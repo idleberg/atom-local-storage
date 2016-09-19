@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "Edit items stored in Atom's localStorage",
   "keywords": [
-    "localStorage"
+    "localStorage",
     "local storage"
   ],
   "activationCommands": {
