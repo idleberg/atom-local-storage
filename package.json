@@ -2,7 +2,7 @@
   "name": "local-storage",
   "main": "./lib/local-storage",
   "version": "0.0.0",
-  "description": "Edit items in Atom's localStorage",
+  "description": "Edit items stored in Atom's localStorage",
   "keywords": [
     "localStorage"
     "local storage"
