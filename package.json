@@ -1,0 +1,36 @@
+{
+  "name": "local-storage",
+  "main": "./lib/local-storage",
+  "version": "0.0.0",
+  "description": "Edit items in Atom's localStorage",
+  "keywords": [
+    "localStorage"
+    "local storage"
+  ],
+  "activationCommands": {
+    "atom-workspace": [
+      "local-storage:open",
+      "local-storage:save"
+    ]
+  },
+  "repository": "https://github.com/idleberg/atom-local-storage",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-space-pen-views": "^2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-coffeelint": "^0.6.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-jsonlint": "^1.1.2",
+    "gulp-lesshint": "^2.0.0",
+    "jshint": "^2.9.3"
+  },
+  "scripts": {
+    "test": "gulp lint"
+  }
+}
