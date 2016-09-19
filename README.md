@@ -4,6 +4,7 @@
 [![apm](https://img.shields.io/apm/v/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
 [![apm](https://img.shields.io/apm/dm/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
 [![Travis](https://img.shields.io/travis/idleberg/atom-local-storage.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-local-storage)
+[![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage)
 [![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage?type=dev)
 
 Edit items stored in Atom's localStorage. Currently works in Developer Mode only!
