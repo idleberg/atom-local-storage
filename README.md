@@ -33,10 +33,9 @@ Clone the repository as `local-storage`:
 $ git clone https://github.com/idleberg/atom-local-storage local-storage
 ```
 
-Install Node dependencies:
+Inside the cloned directory, install Node dependencies:
 
 ```bash
-$ cd local-storage
 $ yarn || npm install
 ```
 
