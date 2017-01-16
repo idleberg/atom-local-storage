@@ -4,16 +4,22 @@ meta = require '../package.json'
 
 module.exports = EditLocalStorage =
   config:
+    detectJson:
+      title: "Auto-detect JSON"
+      description: "If the the opened item is valid JSON, apply syntax highlighter"
+      type: "boolean"
+      default: true
+      order: 1
     limitToDevMode:
       title: "Limit to Developer Mode"
       description: "This package only works reliably in Developer Mode. For testing purposes, you can remove this limitation."
       type: "boolean"
       default: true
-      order: 1
+      order: 2
     ignoredItems:
       title: "Ignored Atom Keys"
       type: "object"
-      order: 2
+      order: 3
       properties:
         installedPackages:
           title: "Installed Packages"

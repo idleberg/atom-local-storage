@@ -18,12 +18,22 @@ class EditLocalStorageView extends SelectListView
     console.log "'#{item}' was selected" if atom.inDevMode()
     @panel.destroy()
 
-    atom.workspace.open(item)
+    atom.workspace.open(item.toString())
       .then (editor) ->
         text = localStorage.getItem(item)
         editor.setText(text)
+
+        if atom.config.get('local-storage.detectJson') is true
+          try
+            obj = JSON.parse(text)
+          catch e
+            console.log "'#{item} is not an object"
+
+          if typeof obj is 'object'
+            editor.setGrammar(atom.grammars.grammarForScopeName('source.json'))
       .catch (error) ->
         atom.notifications.addError(error, dismissable: true)
+
 
   cancelled: ->
     @panel.destroy()
