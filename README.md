@@ -4,10 +4,10 @@
 [![apm](https://img.shields.io/apm/v/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
 [![apm](https://img.shields.io/apm/dm/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
 [![Travis](https://img.shields.io/travis/idleberg/atom-local-storage.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-local-storage)
-[![David](https://img.shields.io/david/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage)
+[![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage)
 [![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage?type=dev)
 
-Edit items stored in Atom's localStorage. Currently works in Developer Mode only!
+Edit items stored in Atom's localStorage. By default, it runs in Developer Mode only!
 
 ## Installation
 
@@ -33,11 +33,14 @@ Clone the repository as `local-storage`:
 $ git clone https://github.com/idleberg/atom-local-storage local-storage
 ```
 
-Inside the cloned directory, install Node dependencies:
+## Usage
 
-```bash
-$ yarn || npm install
-```
+The following commands are available through the [command-palette](https://atom.io/docs/latest/getting-started-atom-basics#command-palette):
+
+* Local Storage: Open
+* Local Storage: Save
+
+Also take note that several tweaks can be made through the package settings!
 
 ## License
 
