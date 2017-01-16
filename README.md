@@ -7,7 +7,7 @@
 [![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage)
 [![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage?type=dev)
 
-Edit items stored in Atom's localStorage. By default, it runs in Developer Mode only!
+Edit items stored in Atom's localStorage. This package only works reliably in Developer Mode!
 
 ## Installation
 
