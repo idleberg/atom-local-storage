@@ -1,42 +1,49 @@
 {CompositeDisposable} = require 'atom'
 EditLocalStorageView = require './local-storage-view'
+meta = require '../package.json'
 
 module.exports = EditLocalStorage =
   config:
-    showItems:
-      title: "Show Atom Keys"
-      type: "object"
+    limitToDevMode:
+      title: "Limit to Developer Mode"
+      description: "As a precautionary measure, this package requires Atom to run in Developer Mode"
+      type: "boolean"
+      default: true
       order: 1
+    ignoredItems:
+      title: "Ignored Atom Keys"
+      type: "object"
+      order: 2
       properties:
         installedPackages:
           title: "Installed Packages"
-          description: "Shows all keys in your localStorage starting with `installed-packages:`"
+          description: "Ignore all keys in your localStorage starting with `installed-packages:`"
           type: "boolean"
-          default: false
+          default: true
           order: 1
         settingsView:
           title: "Settings View"
-          description: "Shows all keys in your localStorage starting with `settings-view:`"
+          description: "Ignore all keys in your localStorage starting with `settings-view:`"
           type: "boolean"
-          default: false
+          default: true
           order: 2
         treeView:
           title: "Tree View"
-          description: "Shows all keys in your localStorage starting with `tree-view:`"
+          description: "Ignore all keys in your localStorage starting with `tree-view:`"
           type: "boolean"
-          default: false
+          default: true
           order: 3
         releaseNotes:
           title: "Release Notes"
-          description: "Shows all keys in your localStorage starting with `release-notes:`"
+          description: "Ignore all keys in your localStorage starting with `release-notes:`"
           type: "boolean"
-          default: false
+          default: true
           order: 4
         metricsID:
           title: "Metrics User ID"
-          description: "Shows localStorage key for `metrics.userId`"
+          description: "Ignore localStorage key for `metrics.userId`"
           type: "boolean"
-          default: false
+          default: true
           order: 5
   localHostView: null
   subscriptions: null
@@ -56,13 +63,13 @@ module.exports = EditLocalStorage =
   serialize: ->
 
   toggle: (state) ->
-    unless atom.inDevMode()
+    if atom.config.get("#{meta.name}.limitToDevMode") is true and atom.inDevMode() is false
       atom.notifications.addWarning("local-storage", detail: "This package currently works in Developer Mode only", dismissable: true)
       return
     @localHostView = new EditLocalStorageView(state.localHostViewState)
 
   save: (state) ->
-    unless atom.inDevMode()
+    if atom.config.get("#{meta.name}.limitToDevMode") is true and atom.inDevMode() is false
       atom.notifications.addWarning("local-storage", detail: "This package currently works in Developer Mode only", dismissable: true)
       return
 
