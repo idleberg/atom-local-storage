@@ -6,7 +6,7 @@ module.exports = EditLocalStorage =
   config:
     limitToDevMode:
       title: "Limit to Developer Mode"
-      description: "As a precautionary measure, this package requires Atom to run in Developer Mode"
+      description: "This package only works reliably in Developer Mode only. For testing purposes, you can remove this limitation."
       type: "boolean"
       default: true
       order: 1
@@ -64,14 +64,12 @@ module.exports = EditLocalStorage =
 
   toggle: (state) ->
     if atom.config.get("#{meta.name}.limitToDevMode") is true and atom.inDevMode() is false
-      atom.notifications.addWarning("local-storage", detail: "This package currently works in Developer Mode only", dismissable: true)
-      return
+      return @warning()
     @localHostView = new EditLocalStorageView(state.localHostViewState)
 
   save: (state) ->
     if atom.config.get("#{meta.name}.limitToDevMode") is true and atom.inDevMode() is false
-      atom.notifications.addWarning("local-storage", detail: "This package currently works in Developer Mode only", dismissable: true)
-      return
+      return @warning()
 
     editor = atom.workspace.getActiveTextEditor()
     unless editor?
@@ -91,3 +89,24 @@ module.exports = EditLocalStorage =
           "Create Item": ->
             localStorage.setItem(title, content)
           "Cancel": -> return
+
+  warning: ()->
+    buttons = null
+    editor = atom.workspace.getActiveTextEditor()
+
+    if editor
+      buttons = [
+        {
+          text: 'Open in Developer Mode'
+          onDidClick: =>
+            editor = atom.workspace.getActiveTextEditor()
+            if editor
+              atom.commands.dispatch atom.views.getView(editor), 'application:open-dev'
+        }
+      ]
+
+    return atom.notifications.addError(
+      "This package currently works in Developer Mode only",
+      dismissable: true,
+      buttons: buttons
+    )
