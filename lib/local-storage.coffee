@@ -111,7 +111,7 @@ module.exports = EditLocalStorage =
         }
       ]
 
-    return atom.notifications.addError(
+    return atom.notifications.addWarning(
       "This package currently works in Developer Mode only",
       dismissable: true,
       buttons: buttons
