@@ -34,7 +34,6 @@ class EditLocalStorageView extends SelectListView
       .catch (error) ->
         atom.notifications.addError(error, dismissable: true)
 
-
   cancelled: ->
     @panel.destroy()
 
