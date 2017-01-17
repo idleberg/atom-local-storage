@@ -1,7 +1,7 @@
 {
   "name": "local-storage",
   "main": "./lib/local-storage",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Edit items stored in Atom's localStorage",
   "keywords": [
     "localStorage",
