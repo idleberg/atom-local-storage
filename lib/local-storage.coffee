@@ -97,7 +97,7 @@ module.exports = EditLocalStorage =
           "Cancel": -> return
 
   warning: ()->
-    return atom.notifications.addWarning(
+    notification = atom.notifications.addWarning(
       "This package currently works in Developer Mode only",
       dismissable: true,
       buttons: [
@@ -105,6 +105,7 @@ module.exports = EditLocalStorage =
           text: 'Open in Developer Mode'
           onDidClick: ->
             atom.commands.dispatch atom.views.getView(atom.workspace), 'application:open-dev'
+            notification.dismiss()
         }
       ]
     )
