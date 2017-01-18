@@ -12,7 +12,7 @@ module.exports = EditLocalStorage =
       order: 1
     limitToDevMode:
       title: "Limit to Developer Mode"
-      description: "This package only works reliably in Developer Mode. For testing purposes, you can remove this limitation."
+      description: "This package only works *reliably* in Developer Mode. For testing purposes, you can remove this limitation."
       type: "boolean"
       default: true
       order: 2
