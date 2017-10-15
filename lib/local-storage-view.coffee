@@ -150,7 +150,13 @@ module.exports = LocalStorageView =
       item = localStorage.getItem(key)
 
       if atom.config.get "local-storage.displayLength"
-        if item isnt "[]" and item isnt "{}"
+        if item is "true"
+          chars = "true"
+        else if item is "false"
+          chars = "false"
+        else if item is "null"
+          chars = "null"
+        else if item isnt "[]" and item isnt "{}"
           chars = item.length
         else
           if atom.config.get("local-storage.filteredItems.emptyItems")
