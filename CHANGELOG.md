@@ -1,3 +1,8 @@
+# v0.4.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.4.1)
+
+- fix JSON handling
+- improve badges
+
 # v0.4.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.4.0)
 
 - implement select list in Etch using `atom-select-list`

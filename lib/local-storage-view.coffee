@@ -85,7 +85,7 @@ module.exports = LocalStorageView =
             editor.setGrammar(atom.grammars.grammarForScopeName("source.json"))
             text = JSON.stringify(JSON.parse(text), null, 2)
 
-          editor.setText(text)
+        editor.setText(text)
       .catch (error) ->
         atom.notifications.addError(error, dismissable: true)
 
