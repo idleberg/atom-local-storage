@@ -2,7 +2,6 @@
 const coffeelint = require('gulp-coffeelint');
 const debug = require('gulp-debug');
 const gulp = require('gulp');
-const jshint = require('gulp-jshint');
 const jsonlint = require('gulp-jsonlint');
 const lesshint = require('gulp-lesshint');
 const stylish = require('coffeelint-stylish');
