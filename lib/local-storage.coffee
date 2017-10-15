@@ -1,89 +1,123 @@
-{CompositeDisposable} = require 'atom'
-EditLocalStorageView = require './local-storage-view'
-meta = require '../package.json'
-
-module.exports = EditLocalStorage =
+module.exports = LocalStorage =
   config:
-    detectJson:
-      title: "Auto-detect JSON"
-      description: "If the the opened item is valid JSON, apply syntax highlighter"
-      type: "boolean"
-      default: true
-      order: 1
     limitToDevMode:
       title: "Limit to Developer Mode"
       description: "This package only works *reliably* in Developer Mode. For testing purposes, you can remove this limitation."
       type: "boolean"
       default: true
+      order: 1
+    detectJson:
+      title: "Auto-detect JSON"
+      description: "If the the opened item is valid JSON, apply syntax highlighter"
+      type: "boolean"
+      default: true
       order: 2
+    displayIcon:
+      title: "Display Icon"
+      description: "Displays icons in list view for improved visual grepping"
+      type: "boolean"
+      default: true
+      order: 3
+    displayLength:
+      title: "Display Length"
+      description: "Displays character lenght in list view"
+      type: "boolean"
+      default: true
+      order: 4
+    badgeStyle:
+      title: "Badge Style"
+      description: "Choose a badge-style from the [Atom Style Guide](https://github.com/atom/styleguide)"
+      type: "string"
+      enum: [
+        "(default)"
+        "info"
+        "success"
+        "warning"
+        "error"
+      ]
+      default: "info"
+      order: 5
+    debugMode:
+      title: "Debug Mode"
+      description: "Specifies whether to log all actions to console"
+      type: "boolean"
+      default: false
+      order: 6
     ignoredItems:
       title: "Ignored Atom Keys"
       type: "object"
-      order: 3
+      order: 7
       properties:
         installedPackages:
           title: "Installed Packages"
-          description: "Ignore all keys in your localStorage starting with `installed-packages:`"
+          description: "Ignore all keys in your storage starting with `installed-packages:`"
           type: "boolean"
           default: true
           order: 1
         settingsView:
           title: "Settings View"
-          description: "Ignore all keys in your localStorage starting with `settings-view:`"
+          description: "Ignore all keys in your storage starting with `settings-view:`"
           type: "boolean"
           default: true
           order: 2
         treeView:
           title: "Tree View"
-          description: "Ignore all keys in your localStorage starting with `tree-view:`"
+          description: "Ignore all keys in your storage starting with `tree-view:`"
           type: "boolean"
           default: true
           order: 3
         releaseNotes:
           title: "Release Notes"
-          description: "Ignore all keys in your localStorage starting with `release-notes:`"
+          description: "Ignore all keys in your storage starting with `release-notes:`"
           type: "boolean"
           default: true
           order: 4
         metricsID:
           title: "Metrics User ID"
-          description: "Ignore localStorage key for `metrics.userId`"
+          description: "Ignore storage key for `metrics.userId`"
           type: "boolean"
           default: true
           order: 5
-  localHostView: null
+        customFilters:
+          title: "Custom Filters"
+          description: "Comma-delimited list of ignored prefixes:"
+          type: "string"
+          default: ""
+          order: 6
   subscriptions: null
 
   activate: (state) ->
+    { CompositeDisposable } = require 'atom'
+
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:open': => @toggle(state)
-    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:save': => @save(state)
+    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:save': => @save()
 
   deactivate: ->
     @subscriptions.dispose()
-    @localHostView.destroy()
 
-  serialize: ->
+  toggle: ->
+    @storagelist = require "./local-storage-view"
 
-  toggle: (state) ->
-    if atom.config.get("#{meta.name}.limitToDevMode") is true and atom.inDevMode() is false
-      return @warning()
-    @localHostView = new EditLocalStorageView(state.localHostViewState)
+    @storagelist.init()
+    @storagelist.toggle()
 
-  save: (state) ->
-    if atom.config.get("#{meta.name}.limitToDevMode") is true and atom.inDevMode() is false
-      return @warning()
+  save: () ->
+    return @warning() if atom.config.get("local-storage.limitToDevMode") is true and atom.inDevMode() is false
 
     editor = atom.workspace.getActiveTextEditor()
-    unless editor?
-      atom.beep()
-      return
+    return atom.beep() unless editor?
 
     title = editor.getTitle()
     content = editor.getText()
+    scope = editor.getGrammar().scopeName
+
+    if atom.config.get("local-storage.detectJson")
+      content = JSON.stringify(JSON.parse(content), null, null)
+
 
     if localStorage.getItem(title)
       localStorage.setItem(title, content)

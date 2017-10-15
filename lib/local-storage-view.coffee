@@ -1,29 +1,83 @@
-{SelectListView} = require 'atom-space-pen-views'
+SelectListView = require 'atom-select-list'
 
-module.exports =
-class EditLocalStorageView extends SelectListView
-  initialize: ->
-    super
-    storageItems = @getAllItems()
-    @addClass('overlay from-top')
-    @setItems(storageItems)
-    @panel ?= atom.workspace.addModalPanel(item: this)
-    @panel.show()
-    @focusFilterEditor()
+module.exports = LocalStorageView =
 
-  viewForItem: (item) ->
-    "<li>#{item}</li>"
+  init: ->
+    @selectListView = new SelectListView({
+      emptyMessage: 'No items found in localStorage',
+      items: []
 
-  confirmed: (item) ->
-    console.log "'#{item}' was selected" if atom.inDevMode()
-    @panel.destroy()
+      filterKeyForItem: (item) -> item.name
 
+      elementForItem: (item) ->
+        element = document.createElement 'li'
+
+        icon = ""
+        badge = ""
+        badgeStyle = "badge-#{atom.config.get "local-storage.badgeStyle"}"
+
+        if item.chars is 1
+          unit = " char"
+        else if item.chars > 1
+          unit = " chars"
+        else
+          unit = ""
+
+        badgeStyle = "" if badgeStyle is "(default)"
+
+        icon = "<div class=\"icon icon-#{item.icon}\"></div>" if atom.config.get "local-storage.displayIcon"
+        badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>" if atom.config.get "local-storage.displayLength"
+
+        html = "#{icon}#{item.name}#{badge}"
+        element.innerHTML = html
+        element
+
+      didConfirmSelection: (item) =>
+        @cancel()
+        @open(item.name)
+
+        console.log "'#{item.name}' was selected" if atom.inDevMode()
+
+      didCancelSelection: () =>
+        @cancel()
+    })
+    @selectListView.element.classList.add('local-storage-list')
+
+  dispose: ->
+    @cancel()
+    @selectListView.destroy()
+
+  cancel: ->
+    if @panel?
+      @panel.destroy()
+    @panel = null
+
+    if @previouslyFocusedElement
+      @previouslyFocusedElement.focus()
+      @previouslyFocusedElement = null
+
+  attach: ->
+    @previouslyFocusedElement = document.activeElement
+    if not @panel?
+      @panel = atom.workspace.addModalPanel({item: @selectListView})
+    @selectListView.focus()
+    @selectListView.reset()
+
+  toggle: ->
+    if @panel?
+      @cancel()
+    else
+      dir = atom.config.get "screen-recorder.targetDirectory"
+      @selectListView.update({items: @getAllItems()})
+      @attach()
+
+  open: (item) ->
     atom.workspace.open(item.toString())
       .then (editor) ->
         text = localStorage.getItem(item)
         editor.setText(text)
 
-        if atom.config.get('local-storage.detectJson') is true
+        if atom.config.get "local-storage.detectJson" is true
           try
             obj = JSON.parse(text)
           catch e
@@ -34,30 +88,67 @@ class EditLocalStorageView extends SelectListView
       .catch (error) ->
         atom.notifications.addError(error, dismissable: true)
 
-  cancelled: ->
-    @panel.destroy()
-
   getAllItems: () ->
     allKeys = []
 
     for i in [1...localStorage.length] by 1
       key = localStorage.key(i)
+      icon = "database" if atom.config.get "local-storage.displayIcon" if atom.config.get "local-storage.displayIcon" or ""
 
-      if atom.config.get('local-storage.ignoredItems.installedPackages') is true and key.startsWith "installed-packages:"
-        console.log "Skipping '#{key}'" if atom.inDevMode()
-        continue
-      if atom.config.get('local-storage.ignoredItems.settingsView') is true and key.startsWith "settings-view:"
-        console.log "Skipping '#{key}'" if atom.inDevMode()
-        continue
-      if atom.config.get('local-storage.ignoredItems.treeView') is true and key.startsWith "tree-view:"
-        console.log "Skipping '#{key}'" if atom.inDevMode()
-        continue
-      if atom.config.get('local-storage.ignoredItems.releaseNotes') is true and key.startsWith "release-notes:"
-        console.log "Skipping '#{key}'" if atom.inDevMode()
-        continue
-      if atom.config.get('local-storage.ignoredItems.metricsID') is true and key is "metrics.userId"
-        console.log "Skipping '#{key}'" if atom.inDevMode()
-        continue
-      allKeys.push key
+      console.log "-#{key}-"
+      console.log key.startsWith "installed-packages:"
+      console.log atom.config.get "local-storage.ignoredItems.installedPackages"
+      # Built-in Filters
+      if key.startsWith "installed-packages:"
+        icon = "package" if atom.config.get "local-storage.displayIcon"
+        if atom.config.get "local-storage.ignoredItems.installedPackages" is true
+          console.log "Skipping '#{key}'" if atom.inDevMode()
+          continue
+      if key.startsWith "settings-view:"
+        icon = "tools" if atom.config.get "local-storage.displayIcon"
+        if atom.config.get "local-storage.ignoredItems.settingsView" is true
+          console.log "Skipping '#{key}'" if atom.inDevMode()
+          continue
+      if key.startsWith "tree-view:"
+        icon = "list-unordered" if atom.config.get "local-storage.displayIcon"
+        if atom.config.get "local-storage.ignoredItems.treeView" is true
+          console.log "Skipping '#{key}'" if atom.inDevMode()
+          continue
+      if key.startsWith "release-notes:"
+        icon = "megaphone" if atom.config.get "local-storage.displayIcon"
+        if atom.config.get "local-storage.ignoredItems.releaseNotes" is true
+          console.log "Skipping '#{key}'" if atom.inDevMode()
+          continue
+      if key is "metrics.userId"
+        icon = "dashboard" if atom.config.get "local-storage.displayIcon"
+        if atom.config.get "local-storage.ignoredItems.metricsID" is true
+          console.log "Skipping '#{key}'" if atom.inDevMode()
+          continue
+      if key is "defaultWindowDimensions"
+        icon = "browser" if atom.config.get "local-storage.displayIcon"
+      if key is "hasSeenDeprecatedNotification"
+        icon = "checklist" if atom.config.get "local-storage.displayIcon"
+      if key is "history"
+        icon = "clock" if atom.config.get "local-storage.displayIcon"
+
+      item = localStorage.getItem(key)
+
+      if atom.config.get "local-storage.displayLength"
+        if item isnt "[]" and item isnt "{}"
+          chars = item.length
+        else
+          chars = "0"
+
+      # Custom Filters
+      # customFilters = atom.config.get("local-storage.ignoredItems.customFilters").trim()
+      # if customFilters.length > 0
+      #   customFilters = customFilters.split(",")
+
+      #   for filter in customFilters
+      #     if key.startsWith(filter)
+      #       console.log "Skipping '#{key}'" if atom.inDevMode()
+      #       key = ""
+
+      allKeys.push {name: key, icon: icon, chars: chars } if key isnt ""
 
     return allKeys
