@@ -43,47 +43,53 @@ module.exports = LocalStorage =
       type: "boolean"
       default: false
       order: 6
-    ignoredItems:
-      title: "Ignored Atom Keys"
+    filteredItems:
+      title: "Filtered Items"
       type: "object"
       order: 7
       properties:
         installedPackages:
           title: "Installed Packages"
-          description: "Ignore all keys in your storage starting with `installed-packages:`"
+          description: "Filter all keys in your storage starting with `installed-packages:`"
           type: "boolean"
           default: true
           order: 1
         settingsView:
           title: "Settings View"
-          description: "Ignore all keys in your storage starting with `settings-view:`"
+          description: "Filter all keys in your storage starting with `settings-view:`"
           type: "boolean"
           default: true
           order: 2
         treeView:
           title: "Tree View"
-          description: "Ignore all keys in your storage starting with `tree-view:`"
+          description: "Filter all keys in your storage starting with `tree-view:`"
           type: "boolean"
           default: true
           order: 3
         releaseNotes:
           title: "Release Notes"
-          description: "Ignore all keys in your storage starting with `release-notes:`"
+          description: "Filter all keys in your storage starting with `release-notes:`"
           type: "boolean"
           default: true
           order: 4
         metricsID:
           title: "Metrics User ID"
-          description: "Ignore storage key for `metrics.userId`"
+          description: "Filter storage key for `metrics.userId`"
           type: "boolean"
           default: true
           order: 5
+        emptyItems:
+          title: "Empty Items"
+          description: "Filter all zero-length items"
+          type: "boolean"
+          default: true
+          order: 6
         customFilters:
           title: "Custom Filters"
-          description: "Comma-delimited list of ignored prefixes:"
+          description: "Comma-delimited list of prefixes to be filtered"
           type: "string"
           default: ""
-          order: 6
+          order: 7
   subscriptions: null
 
   activate: (state) ->

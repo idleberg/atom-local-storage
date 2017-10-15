@@ -99,24 +99,24 @@ module.exports = LocalStorageView =
       key = localStorage.key(i)
 
       # Built-in Filters
-      if atom.config.get("local-storage.ignoredItems.installedPackages") is true and key.startsWith "installed-packages:"
+      if atom.config.get("local-storage.filteredItems.installedPackages") is true and key.startsWith "installed-packages:"
         console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
         continue
-      if atom.config.get("local-storage.ignoredItems.settingsView") is true and key.startsWith "settings-view:"
+      if atom.config.get("local-storage.filteredItems.settingsView") is true and key.startsWith "settings-view:"
         console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
         continue
-      if atom.config.get("local-storage.ignoredItems.treeView") is true and key.startsWith "tree-view:"
+      if atom.config.get("local-storage.filteredItems.treeView") is true and key.startsWith "tree-view:"
         console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
         continue
-      if atom.config.get("local-storage.ignoredItems.releaseNotes") is true and key.startsWith "release-notes:"
+      if atom.config.get("local-storage.filteredItems.releaseNotes") is true and key.startsWith "release-notes:"
         console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
         continue
-      if atom.config.get("local-storage.ignoredItems.metricsID") is true and key is "metrics.userId"
+      if atom.config.get("local-storage.filteredItems.metricsID") is true and key is "metrics.userId"
         console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
         continue
 
       # Custom Filters
-      customFilters = atom.config.get("local-storage.ignoredItems.customFilters").trim()
+      customFilters = atom.config.get("local-storage.filteredItems.customFilters").trim()
       if customFilters.length > 0
         customFilters = customFilters.split(",")
 
@@ -153,6 +153,9 @@ module.exports = LocalStorageView =
         if item isnt "[]" and item isnt "{}"
           chars = item.length
         else
+          if atom.config.get("local-storage.filteredItems.emptyItems")
+            console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
+            continue
           chars = "0"
 
       # Add to list
