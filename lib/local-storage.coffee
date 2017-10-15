@@ -121,9 +121,8 @@ module.exports = LocalStorage =
     content = editor.getText()
     scope = editor.getGrammar().scopeName
 
-    if atom.config.get("local-storage.detectJson")
-      content = JSON.stringify(JSON.parse(content), null, null)
-
+    if scope is "source.json"
+      content = JSON.stringify(JSON.parse(content))
 
     if localStorage.getItem(title)
       localStorage.setItem(title, content)
