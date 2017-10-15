@@ -8,7 +8,7 @@ module.exports = LocalStorage =
       order: 1
     detectJson:
       title: "Auto-detect JSON"
-      description: "If the the opened item is valid JSON, apply syntax highlighter"
+      description: "If the the opened item is valid JSON, prettifies output applies syntax highlighter"
       type: "boolean"
       default: true
       order: 2
