@@ -5,12 +5,16 @@
       'label': 'localStorage'
       'submenu': [
         {
-          'label': 'Open'
-          'command': 'local-storage:open'
+          'label': 'Open Item'
+          'command': 'local-storage:open-item'
         },
         {
-          'label': 'Save'
-          'command': 'local-storage:save'
+          'label': 'Save Item'
+          'command': 'local-storage:save-item'
+        },
+        {
+          'label': 'Delete Item'
+          'command': 'local-storage:delete-item'
         }
       ]
     ]

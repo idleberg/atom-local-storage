@@ -1,3 +1,5 @@
+{ name } = require "../package.json"
+
 module.exports = LocalStorage =
   config:
     limitToDevMode:
@@ -18,9 +20,9 @@ module.exports = LocalStorage =
       type: "boolean"
       default: true
       order: 3
-    displayLength:
-      title: "Display Length"
-      description: "Displays character lenght in list view"
+    displayBadge:
+      title: "Display Badge"
+      description: "Displays badge showing item details, e.g. character length"
       type: "boolean"
       default: true
       order: 4
@@ -99,21 +101,23 @@ module.exports = LocalStorage =
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:open': => @toggle(state)
-    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:save': => @save()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:open-item': => @show(state, "open")
+    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:delete-item': => @show(state, "delete")
+    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:save-item': => @save()
 
   deactivate: ->
     @subscriptions.dispose()
 
-  toggle: ->
+  show: (state, mode) ->
     @storagelist = require "./local-storage-view"
 
-    @storagelist.init()
+    @storagelist.init(mode)
     @storagelist.toggle()
 
   save: () ->
     return @warning() if atom.config.get("local-storage.limitToDevMode") is true and atom.inDevMode() is false
 
+    require("./ga").sendEvent name, "Save Item"
     editor = atom.workspace.getActiveTextEditor()
     return atom.beep() unless editor?
 
@@ -132,10 +136,14 @@ module.exports = LocalStorage =
         detailedMessage: "The item '#{title}' is currently not in your localStorage. Are you sure you want to create a new item?"
         buttons:
           "Create Item": ->
+            require("./ga").sendEvent name, "Create Item"
             localStorage.setItem(title, content)
-          "Cancel": -> return
+          "Cancel": ->
+            require("./ga").sendEvent name, "Cancelled: Create Item"
+            return
 
-  warning: ()->
+  warning: () ->
+    require("./ga").sendEvent name, "Warning: Open in Developer Mode"
     notification = atom.notifications.addWarning(
       "This package currently works in Developer Mode only",
       dismissable: true,
@@ -143,6 +151,7 @@ module.exports = LocalStorage =
         {
           text: 'Open in Developer Mode'
           onDidClick: ->
+            require("./ga").sendEvent name, "Open in Developer Mode"
             atom.commands.dispatch atom.views.getView(atom.workspace), 'application:open-dev'
             notification.dismiss()
         }

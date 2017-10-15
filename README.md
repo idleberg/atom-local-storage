@@ -37,8 +37,9 @@ $ git clone https://github.com/idleberg/atom-local-storage local-storage
 
 The following commands are available through the [command-palette](https://atom.io/docs/latest/getting-started-atom-basics#command-palette):
 
-* Local Storage: Open
-* Local Storage: Save
+* Local Storage: Open Item
+* Local Storage: Save Item
+* Local Storage: Delete Item
 
 Also take note that several tweaks can be made through the package settings!
 

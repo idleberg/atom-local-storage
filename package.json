@@ -9,8 +9,9 @@
   ],
   "activationCommands": {
     "atom-workspace": [
-      "local-storage:open",
-      "local-storage:save"
+      "local-storage:open-item",
+      "local-storage:delete-item",
+      "local-storage:save-item"
     ]
   },
   "repository": "https://github.com/idleberg/atom-local-storage",
@@ -19,7 +20,8 @@
     "atom": ">=1.17.0 <2.0.0"
   },
   "dependencies": {
-    "atom-select-list": "^0.3.2"
+    "atom-select-list": "^0.3.2",
+    "getmac": "^1.2.1"
   },
   "devDependencies": {
     "coffeelint-stylish": "^0.1.2",

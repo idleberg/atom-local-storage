@@ -1,8 +1,9 @@
+{ name } = require "../package.json"
 SelectListView = require "atom-select-list"
 
 module.exports = LocalStorageView =
 
-  init: ->
+  init: (mode) ->
     @selectListView = new SelectListView({
       emptyMessage: "No items found in localStorage",
       items: []
@@ -26,7 +27,7 @@ module.exports = LocalStorageView =
         badgeStyle = "" if badgeStyle is "(default)"
 
         icon = "<div class=\"icon icon-#{item.icon}\"></div>" if atom.config.get "local-storage.displayIcon"
-        badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>" if atom.config.get "local-storage.displayLength"
+        badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>" if atom.config.get "local-storage.displayBadge"
 
         html = "#{icon}#{item.name}#{badge}"
         element.innerHTML = html
@@ -34,7 +35,11 @@ module.exports = LocalStorageView =
 
       didConfirmSelection: (item) =>
         @cancel()
-        @open(item.name)
+
+        if mode is "delete"
+          @delete(item.name)
+        else
+          @open(item.name)
 
         console.log "'#{item.name}' was selected" if atom.config.get("local-storage.debugMode")
 
@@ -73,21 +78,46 @@ module.exports = LocalStorageView =
   open: (item) ->
     atom.workspace.open(item.toString())
       .then (editor) ->
+        require("./ga").sendEvent name, "Open Item"
+        console.log "Opening '#{key}'" if atom.config.get("local-storage.debugMode")
         text = localStorage.getItem(item)
 
         if atom.config.get("local-storage.detectJson") is true
           try
             obj = JSON.parse(text)
           catch e
-            console.log "'#{item} is not an object"
+            console.log "'#{item} is not an object" if atom.config.get("local-storage.debugMode")
 
           if typeof obj is "object"
+            console.log "'#{item} is an object" if atom.config.get("local-storage.debugMode")
             editor.setGrammar(atom.grammars.grammarForScopeName("source.json"))
             text = JSON.stringify(JSON.parse(text), null, 2)
 
         editor.setText(text)
       .catch (error) ->
         atom.notifications.addError(error, dismissable: true)
+
+  delete: (item) ->
+    notification = atom.notifications.addWarning(
+      "Do you really want to delete `#{item}` from localStorage?",
+      dismissable: true,
+      buttons: [
+        {
+          text: 'Delete Item'
+          onDidClick: ->
+            require("./ga").sendEvent name, "Delete Item"
+            console.log "Deleting '#{key}'" if atom.config.get("local-storage.debugMode")
+            localStorage.removeItem(item)
+            notification.dismiss()
+        }
+        {
+          text: 'Cancel'
+          onDidClick: ->
+            require("./ga").sendEvent name, "Cancelled: Delete Item"
+            notification.dismiss()
+        }
+      ]
+    )
 
   getAllItems: () ->
     console.clear() if atom.config.get("local-storage.debugMode")
@@ -149,7 +179,7 @@ module.exports = LocalStorageView =
       # Character length
       item = localStorage.getItem(key)
 
-      if atom.config.get "local-storage.displayLength"
+      if atom.config.get "local-storage.displayBadge"
         if item is "true"
           chars = "true"
         else if item is "false"
