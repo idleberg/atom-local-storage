@@ -1,3 +1,9 @@
+# v0.5.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.5.0)
+
+- add option to delete item from localStorage
+- add metrics support
+- rename option
+
 # v0.4.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.4.1)
 
 - fix JSON handling
