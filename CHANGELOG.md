@@ -3,6 +3,7 @@
 - implement select list in Etch using `atom-select-list`
 - add icons
 - add character length to list
+- add empty items filter
 - add custom filters
 - prettify JSON
 - update `devDependencies`
