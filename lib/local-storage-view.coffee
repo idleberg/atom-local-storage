@@ -12,6 +12,7 @@ module.exports = LocalStorageView =
 
       elementForItem: (item) ->
         element = document.createElement "li"
+        element.classList.add "inline-block"
 
         icon = ""
         badge = ""
@@ -26,10 +27,14 @@ module.exports = LocalStorageView =
 
         badgeStyle = "" if badgeStyle is "(default)"
 
-        icon = "<div class=\"icon icon-#{item.icon}\"></div>" if atom.config.get "local-storage.displayIcon"
-        badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>" if atom.config.get "local-storage.displayBadge"
+        if atom.config.get "local-storage.displayBadge"
+          badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>"
 
-        html = "#{icon}#{item.name}#{badge}"
+        if atom.config.get "local-storage.displayIcon"
+          html = "<div class=\"icon icon-#{item.icon}\">#{item.name}#{badge}</div>"
+        else
+          html = "#{icon}##{badge}"
+
         element.innerHTML = html
         element
 
