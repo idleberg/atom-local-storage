@@ -1,6 +1,6 @@
 # v0.5.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.5.2)
 
-- fix anonymizerIP parameter
+- fix `anonymizerIP` parameter
 
 # v0.5.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.5.1)
 
