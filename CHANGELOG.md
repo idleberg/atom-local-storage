@@ -1,3 +1,8 @@
+# v0.5.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.5.1)
+
+- update default GA parameter
+- update dependencies
+
 # v0.5.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.5.0)
 
 - add option to delete item from localStorage
