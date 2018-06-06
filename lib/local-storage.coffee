@@ -86,12 +86,18 @@ module.exports = LocalStorage =
           type: "boolean"
           default: true
           order: 6
+        nullItems:
+          title: "Null Items"
+          description: "Filter all null items"
+          type: "boolean"
+          default: true
+          order: 7
         customFilters:
           title: "Custom Filters"
           description: "Comma-delimited list of prefixes to be filtered"
           type: "string"
           default: ""
-          order: 7
+          order: 8
   subscriptions: null
 
   activate: (state) ->
