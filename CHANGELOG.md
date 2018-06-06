@@ -1,3 +1,7 @@
+# v0.6.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.6.0)
+
+- add `nullItems` option
+
 # v0.5.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.5.2)
 
 - fix `anonymizerIP` parameter
