@@ -16,7 +16,15 @@ module.exports = LocalStorageView =
 
         icon = ""
         badge = ""
-        badgeStyle = "badge-#{atom.config.get "local-storage.badgeStyle"}"
+
+        if item.chars is "true"
+          badgeStyle = "success"
+        else if item.chars is "false"
+          badgeStyle = "error"
+        else if item.chars is "null"
+          badgeStyle = "warning"
+        else
+          badgeStyle = "info"
 
         if item.chars is 1
           unit = " char"
@@ -25,15 +33,13 @@ module.exports = LocalStorageView =
         else
           unit = ""
 
-        badgeStyle = "" if badgeStyle is "(default)"
-
         if atom.config.get "local-storage.displayBadge"
-          badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>"
+          badge = "<div class=\"pull-right\"><span class=\"badge badge-#{badgeStyle}\">#{item.chars}#{unit}</span></div>"
 
         if atom.config.get "local-storage.displayIcon"
-          html = "<div class=\"icon icon-#{item.icon}\">#{item.name}#{badge}</div>"
+          html = "#{badge}<div class=\"icon icon-#{item.icon}\">#{item.name}</div>"
         else
-          html = "#{icon}##{badge}"
+          html = "#{badge}#{item.name}"
 
         element.innerHTML = html
         element
@@ -190,6 +196,9 @@ module.exports = LocalStorageView =
         else if item is "false"
           chars = "false"
         else if item is "null"
+          if atom.config.get("local-storage.filteredItems.nullItems")
+            console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
+            continue
           chars = "null"
         else if item isnt "[]" and item isnt "{}"
           chars = item.length

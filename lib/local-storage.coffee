@@ -26,29 +26,16 @@ module.exports = LocalStorage =
       type: "boolean"
       default: true
       order: 4
-    badgeStyle:
-      title: "Badge Style"
-      description: "Choose a badge-style from the [Atom Style Guide](https://github.com/atom/styleguide)"
-      type: "string"
-      enum: [
-        "(default)"
-        "info"
-        "success"
-        "warning"
-        "error"
-      ]
-      default: "info"
-      order: 5
     debugMode:
       title: "Debug Mode"
       description: "Specifies whether to log all actions to console"
       type: "boolean"
       default: false
-      order: 6
+      order: 5
     filteredItems:
       title: "Filtered Items"
       type: "object"
-      order: 7
+      order: 6
       properties:
         installedPackages:
           title: "Installed Packages"
@@ -86,12 +73,18 @@ module.exports = LocalStorage =
           type: "boolean"
           default: true
           order: 6
+        nullItems:
+          title: "Null Items"
+          description: "Filter all null items"
+          type: "boolean"
+          default: true
+          order: 7
         customFilters:
           title: "Custom Filters"
           description: "Comma-delimited list of prefixes to be filtered"
           type: "string"
           default: ""
-          order: 7
+          order: 8
   subscriptions: null
 
   activate: (state) ->
