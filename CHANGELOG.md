@@ -1,3 +1,8 @@
+# v0.7.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.0)
+
+- use color-coded badges
+- remove badge-style settings
+
 # v0.6.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.6.1)
 
 - fix badge alignment in some themes
