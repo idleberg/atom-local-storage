@@ -31,9 +31,9 @@ module.exports = LocalStorageView =
           badge = "<div class=\"pull-right\"><span class=\"badge #{badgeStyle}\">#{item.chars}#{unit}</span></div>"
 
         if atom.config.get "local-storage.displayIcon"
-          html = "<div class=\"icon icon-#{item.icon}\">#{item.name}#{badge}</div>"
+          html = "#{badge}<div class=\"icon icon-#{item.icon}\">#{item.name}</div>"
         else
-          html = "#{icon}##{badge}"
+          html = "#{badge}#{item.name}"
 
         element.innerHTML = html
         element
