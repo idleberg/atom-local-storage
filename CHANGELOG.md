@@ -1,3 +1,8 @@
+# v0.7.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.2)
+
+- fix typo
+- use consistent quotes
+
 # v0.7.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.1)
 
 - cleanup stray settings
