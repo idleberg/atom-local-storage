@@ -1,3 +1,7 @@
+# v0.7.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.1)
+
+- cleanup removed settings
+
 # v0.7.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.0)
 
 - use color-coded badges

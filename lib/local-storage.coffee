@@ -98,8 +98,13 @@ module.exports = LocalStorage =
     @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:delete-item': => @show(state, "delete")
     @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:save-item': => @save()
 
+    @cleanup
+
   deactivate: ->
     @subscriptions.dispose()
+
+  cleanup: ->
+    atom.config.unset "#{meta.name}.badgeStyle"
 
   show: (state, mode) ->
     @storagelist = require "./local-storage-view"
