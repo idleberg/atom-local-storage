@@ -88,15 +88,15 @@ module.exports = LocalStorage =
   subscriptions: null
 
   activate: (state) ->
-    { CompositeDisposable } = require 'atom'
+    { CompositeDisposable } = require "atom"
 
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:open-item': => @show(state, "open")
-    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:delete-item': => @show(state, "delete")
-    @subscriptions.add atom.commands.add 'atom-workspace', 'local-storage:save-item': => @save()
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:open-item": => @show(state, "open")
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:delete-item": => @show(state, "delete")
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:save-item": => @save()
 
     @cleanup
 
@@ -104,7 +104,7 @@ module.exports = LocalStorage =
     @subscriptions.dispose()
 
   cleanup: ->
-    atom.config.unset "#{meta.name}.badgeStyle"
+    atom.config.unset "#{name}.badgeStyle"
 
   show: (state, mode) ->
     @storagelist = require "./local-storage-view"
@@ -113,7 +113,7 @@ module.exports = LocalStorage =
     @storagelist.toggle()
 
   save: () ->
-    return @warning() if atom.config.get("local-storage.limitToDevMode") is true and atom.inDevMode() is false
+    return @warning() if atom.config.get("#{name}.limitToDevMode") is true and atom.inDevMode() is false
 
     require("./ga").sendEvent name, "Save Item"
     editor = atom.workspace.getActiveTextEditor()
@@ -147,10 +147,10 @@ module.exports = LocalStorage =
       dismissable: true,
       buttons: [
         {
-          text: 'Open in Developer Mode'
+          text: "Open in Developer Mode"
           onDidClick: ->
             require("./ga").sendEvent name, "Open in Developer Mode"
-            atom.commands.dispatch atom.views.getView(atom.workspace), 'application:open-dev'
+            atom.commands.dispatch atom.views.getView(atom.workspace), "application:open-dev"
             notification.dismiss()
         }
       ]

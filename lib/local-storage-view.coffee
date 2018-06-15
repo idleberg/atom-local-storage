@@ -114,7 +114,7 @@ module.exports = LocalStorageView =
       dismissable: true,
       buttons: [
         {
-          text: 'Delete Item'
+          text: "Delete Item"
           onDidClick: ->
             require("./ga").sendEvent name, "Delete Item"
             console.log "Deleting '#{key}'" if atom.config.get("local-storage.debugMode")
@@ -122,7 +122,7 @@ module.exports = LocalStorageView =
             notification.dismiss()
         }
         {
-          text: 'Cancel'
+          text: "Cancel"
           onDidClick: ->
             require("./ga").sendEvent name, "Cancelled: Delete Item"
             notification.dismiss()
@@ -201,7 +201,7 @@ module.exports = LocalStorageView =
             continue
           chars = "null"
         else if item isnt "[]" and item isnt "{}"
-          chars = item.length
+            chars = item.length
         else
           if atom.config.get("local-storage.filteredItems.emptyItems")
             console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
