@@ -201,7 +201,7 @@ module.exports = LocalStorageView =
             continue
           chars = "null"
         else if item isnt "[]" and item isnt "{}"
-            chars = item.length
+          chars = item.length
         else
           if atom.config.get("local-storage.filteredItems.emptyItems")
             console.log "Skipping '#{key}'" if atom.config.get("local-storage.debugMode")
