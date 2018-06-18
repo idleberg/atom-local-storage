@@ -9,7 +9,7 @@
 
 Edit items stored in Atom's localStorage. This package only works reliably in Developer Mode!
 
-![Screenshot](https://raw.github.com/idleberg/atom-local-storage/master/screenshot.gif)
+![Screenshot](https://raw.github.com/idleberg/atom-local-storage/master/screenshot.png)
 
 ## Installation
 
