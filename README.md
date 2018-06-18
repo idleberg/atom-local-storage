@@ -9,6 +9,8 @@
 
 Edit items stored in Atom's localStorage. This package only works reliably in Developer Mode!
 
+![Screenshot](https://raw.github.com/idleberg/atom-local-storage/master/screenshot.gif)
+
 ## Installation
 
 Install `local-storage` from Atom's [Package Manager](http://flight-manual.atom.io/using-atom/sections/atom-packages/) or the command-line equivalent:
