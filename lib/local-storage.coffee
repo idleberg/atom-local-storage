@@ -86,6 +86,7 @@ module.exports = LocalStorage =
           default: ""
           order: 8
   subscriptions: null
+  storageEditor: []
 
   activate: (state) ->
     { CompositeDisposable } = require "atom"
@@ -97,6 +98,8 @@ module.exports = LocalStorage =
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:open-item": => @show(state, "open")
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:delete-item": => @show(state, "delete")
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:save-item": => @save()
+
+    @subscriptions.add atom.workspace.onDidChangeActiveTextEditor => @subscribeToActiveTextEditor()
 
     @cleanup
 
@@ -111,6 +114,10 @@ module.exports = LocalStorage =
 
     @storagelist.init(mode)
     @storagelist.toggle()
+
+  subscribeToActiveTextEditor: () ->
+    editor = atom.workspace.getActiveTextEditor()
+    console.log "Switched to #{editor.id}"
 
   save: () ->
     return @warning() if atom.config.get("#{name}.limitToDevMode") is true and atom.inDevMode() is false
