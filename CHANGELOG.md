@@ -2,6 +2,7 @@
 
 - bundle with Webpack
 - remove metrics
+- use Circle CI
 - update dependencies
 
 # v0.7.3 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.3)
