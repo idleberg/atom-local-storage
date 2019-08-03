@@ -1,3 +1,9 @@
+# v0.8.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.8.0)
+
+- bundle with Webpack
+- remove metrics
+- update dependencies
+
 # v0.7.3 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.7.3)
 
 - fix indentation
