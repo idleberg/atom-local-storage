@@ -89,7 +89,6 @@ module.exports = LocalStorageView =
   open: (item) ->
     atom.workspace.open(item.toString())
       .then (editor) ->
-        require("./ga").sendEvent name, "Open Item"
         console.log "Opening '#{key}'" if atom.config.get("local-storage.debugMode")
         text = localStorage.getItem(item)
 
@@ -116,7 +115,6 @@ module.exports = LocalStorageView =
         {
           text: "Delete Item"
           onDidClick: ->
-            require("./ga").sendEvent name, "Delete Item"
             console.log "Deleting '#{key}'" if atom.config.get("local-storage.debugMode")
             localStorage.removeItem(item)
             notification.dismiss()
@@ -124,7 +122,6 @@ module.exports = LocalStorageView =
         {
           text: "Cancel"
           onDidClick: ->
-            require("./ga").sendEvent name, "Cancelled: Delete Item"
             notification.dismiss()
         }
       ]

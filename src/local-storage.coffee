@@ -122,7 +122,6 @@ module.exports = LocalStorage =
   save: () ->
     return @warning() if atom.config.get("#{name}.limitToDevMode") is true and atom.inDevMode() is false
 
-    require("./ga").sendEvent name, "Save Item"
     editor = atom.workspace.getActiveTextEditor()
     return atom.beep() unless editor?
 
@@ -141,14 +140,11 @@ module.exports = LocalStorage =
         detailedMessage: "The item '#{title}' is currently not in your localStorage. Are you sure you want to create a new item?"
         buttons:
           "Create Item": ->
-            require("./ga").sendEvent name, "Create Item"
             localStorage.setItem(title, content)
           "Cancel": ->
-            require("./ga").sendEvent name, "Cancelled: Create Item"
             return
 
   warning: () ->
-    require("./ga").sendEvent name, "Warning: Open in Developer Mode"
     notification = atom.notifications.addWarning(
       "This package currently works in Developer Mode only",
       dismissable: true,
@@ -156,7 +152,6 @@ module.exports = LocalStorage =
         {
           text: "Open in Developer Mode"
           onDidClick: ->
-            require("./ga").sendEvent name, "Open in Developer Mode"
             atom.commands.dispatch atom.views.getView(atom.workspace), "application:open-dev"
             notification.dismiss()
         }

@@ -1,11 +1,10 @@
 # localStorage
 
-[![apm](https://img.shields.io/apm/l/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
-[![apm](https://img.shields.io/apm/v/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
-[![apm](https://img.shields.io/apm/dm/local-storage.svg?style=flat-square)](https://atom.io/packages/local-storage)
-[![Travis](https://img.shields.io/travis/idleberg/atom-local-storage.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-local-storage)
-[![David](https://img.shields.io/david/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage)
-[![David](https://img.shields.io/david/dev/idleberg/atom-local-storage.svg?style=flat-square)](https://david-dm.org/idleberg/atom-local-storage?type=dev)
+[![apm](https://flat.badgen.net/apm/license/local-storage)](https://atom.io/packages/local-storage)
+[![apm](https://flat.badgen.net/apm/v/local-storage)](https://atom.io/packages/local-storage)
+[![apm](https://flat.badgen.net/apm/dl/local-storage)](https://atom.io/packages/local-storage)
+[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-local-storage)](https://circleci.com/gh/idleberg/atom-local-storage)
+[![David](https://flat.badgen.net/david/dep/idleberg/atom-local-storage)](https://david-dm.org/idleberg/atom-local-storage)
 
 Edit items stored in Atom's localStorage. This package only works reliably in Developer Mode!
 
