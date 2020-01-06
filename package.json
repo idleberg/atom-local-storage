@@ -4,7 +4,7 @@
   "version": "0.9.6",
   "description": "Edit items stored in Atom's localStorage",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "rimraf ./lib && webpack --mode production",
     "dev": "webpack --mode none --watch",
     "lint": "tslint --project ./",
     "lint:fix": "tslint --fix --project ./",
@@ -41,6 +41,7 @@
     "@types/atom": "^1.36.1",
     "@types/node": "^13.1.4",
     "husky": "^3.1.0",
+    "rimraf": "^3.0.0",
     "ts-loader": "^6.0.4",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4",
