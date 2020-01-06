@@ -329,7 +329,7 @@ function getBadgeText(value) {
 }
 
 function showWarning() {
-  const notification = atom.notifications.addWarning('This package currently works best in Developer Mode only.', {
+  const notification = atom.notifications.addWarning('This package currently works best in Developer Mode only. You can disable this limitation in the package settings', {
     dismissable: true,
     buttons: [
       {
@@ -341,8 +341,12 @@ function showWarning() {
         }
       },
       {
-        text: 'Cancel',
-        onDidClick: () => notification.dismiss()
+        text: 'Open Settings',
+        className: 'icon icon-tools',
+        onDidClick: () => {
+           atom.workspace.open('atom://config/packages/local-storage', {pending: true, searchAllPanes: true});
+          notification.dismiss();
+        }
       }
     ]
   });
