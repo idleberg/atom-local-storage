@@ -1,4 +1,8 @@
-# v0.9.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.8.0)
+# v0.9.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.1)
+
+- fix: rename command in menu
+
+# v0.9.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.0)
 
 - rewrite in TypeScript
 - add panel to save changes
