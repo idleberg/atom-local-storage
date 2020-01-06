@@ -1,43 +1,36 @@
 const config = {
-  limitToDevMode: {
-    title: 'Limit to Developer Mode',
-    description: 'This package only works *reliably* in Developer Mode. For testing purposes, you can remove this limitation.',
-    type: 'boolean',
-    default: true,
-    order: 1
-  },
   detectJson: {
     title: 'Auto-detect JSON',
     description: 'If the the opened item is valid JSON, prettifies output and applies syntax highlighter',
     type: 'boolean',
     default: true,
-    order: 2
+    order: 1
   },
   displayIcon: {
     title: 'Display Icon',
     description: 'Displays icons in list view for improved visual grepping',
     type: 'boolean',
     default: true,
-    order: 3
+    order: 2
   },
   displayBadge: {
     title: 'Display Badge',
     description: 'Displays badge showing item details, e.g. character length',
     type: 'boolean',
     default: true,
-    order: 4
+    order: 3
   },
   debugMode: {
     title: 'Debug Mode',
     description: 'Specifies whether to log all actions to console',
     type: 'boolean',
     default: false,
-    order: 5
+    order: 4
   },
   filteredItems: {
     title: 'Filtered Items',
     type: 'object',
-    order: 6,
+    order: 5,
     properties: {
       installedPackages: {
         title: 'Installed Packages',

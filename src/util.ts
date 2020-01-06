@@ -1,10 +1,9 @@
+import { tmpdir } from 'os';
+import { join } from 'path';
+
 let storageEditors: number[] = [];
 
 async function createListView(action) {
-  if (action === 'open' && getConfig('limitToDevMode') === true && atom.inDevMode() === false) {
-    return showWarning();
-  }
-
   const { selectListView } = await import('./view');
   const storageItems = Object.keys(localStorage).filter( key => filterKeys(key));
 
@@ -31,7 +30,9 @@ async function createListView(action) {
 }
 
 function openItem(item) {
-  atom.workspace.open(item).then( editor => {
+  const uri = isProject() ? item : join(tmpdir(), item);
+
+  atom.workspace.open(uri).then( editor => {
     const debugMode = getConfig('debugMode');
 
     if (debugMode) console.log(`Opening '${item}' from localStorage`);
@@ -65,10 +66,6 @@ function openItem(item) {
 }
 
 function saveItem() {
-  if (getConfig('limitToDevMode') === true && atom.inDevMode() === false) {
-    return showWarning();
-  }
-
   const editor = atom.workspace.getActiveTextEditor();
 
   if (editor == null) return atom.beep();
@@ -348,28 +345,10 @@ function getBadgeText(value) {
   }
 }
 
-function showWarning() {
-  const notification = atom.notifications.addWarning('This package works best when in Developer Mode. However, you can disable this limitation in the settings.', {
-    dismissable: true,
-    buttons: [
-      {
-        text: 'Open in Developer Mode',
-        className: 'icon icon-code',
-        onDidClick: () => {
-          atom.commands.dispatch(atom.views.getView(atom.workspace), 'application:open-dev');
-          notification.dismiss();
-        }
-      },
-      {
-        text: 'Open Settings',
-        className: 'icon icon-tools',
-        onDidClick: () => {
-          atom.workspace.open('atom://config/packages/local-storage', {pending: true, searchAllPanes: true});
-          notification.dismiss();
-        }
-      }
-    ]
-  });
+function isProject() {
+  const projectPaths: string[] = atom.project.getPaths();
+
+  return projectPaths.length > 0 ? true : false;
 }
 
 export {
