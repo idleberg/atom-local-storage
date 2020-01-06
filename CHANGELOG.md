@@ -1,3 +1,10 @@
+# v0.9.4 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.4)
+
+- fix when opening from non-TextEditor panel
+- conditionally show close notification
+- change selectors
+- remove unused files
+
 # v0.9.3 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.3)
 
 - change Developer Mode dialog

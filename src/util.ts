@@ -152,6 +152,10 @@ function showPanel(editor) {
 
   const closeButton: HTMLElement = atomPanel.querySelector('.btn-default') as HTMLElement;
   closeButton.addEventListener('click', () => {
+    if (editor.getText() === localStorage.getItem(editor.getTitle())) {
+      return closeEditor(editor);
+    }
+
     const notification = atom.notifications.addInfo(
       `This localStorage item has changes, do you really want to discard them?`, {
       dismissable: true,
@@ -160,16 +164,7 @@ function showPanel(editor) {
           text: 'Discard Changes',
           className: 'icon icon-trashcan',
           onDidClick: () => {
-            const index = storageEditors.indexOf(editor.id);
-            storageEditors.splice(index, 1);
-
-            const controls: HTMLElement = document.querySelector(`[data-local-storage="${editor.id}"`) as HTMLElement;
-            if (controls && controls.parentNode) {
-              controls.parentNode.removeChild(controls);
-            }
-
-            // @ts-ignore
-            editor.destroy();
+            closeEditor(editor);
             notification.dismiss();
           }
         },
@@ -231,6 +226,19 @@ function filterKeys(key: string): boolean {
     if (getConfig('debugMode')) console.log(`Skipping '${key}'`);
     return false;
   }
+}
+
+function closeEditor(editor) {
+  const index = storageEditors.indexOf(editor.id);
+  storageEditors.splice(index, 1);
+
+  const controls: HTMLElement = document.querySelector(`[data-local-storage="${editor.id}"`) as HTMLElement;
+  if (controls && controls.parentNode) {
+    controls.parentNode.removeChild(controls);
+  }
+
+  // @ts-ignore
+  editor.destroy();
 }
 
 function getConfig(key: string = '') {
