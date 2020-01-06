@@ -13,8 +13,8 @@
           'command': 'local-storage:save-item'
         },
         {
-          'label': 'Delete Item'
-          'command': 'local-storage:delete-item'
+          'label': 'Remove Item'
+          'command': 'local-storage:remove-item'
         }
       ]
     ]
