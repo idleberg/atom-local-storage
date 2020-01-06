@@ -1,16 +1,20 @@
 let storageEditors: number[] = [];
 
 async function createListView(action) {
-    const { selectListView } = await import('./view');
-    const storageItems = Object.keys(localStorage).filter( key => filterKeys(key));
+  if (getConfig('limitToDevMode') === true && atom.inDevMode() === false) {
+    return showWarning();
+  }
 
-    if (storageItems === undefined) return;
+  const { selectListView } = await import('./view');
+  const storageItems = Object.keys(localStorage).filter( key => filterKeys(key));
 
-    const selection = await selectListView(
-      storageItems
-    );
+  if (storageItems === undefined) return;
 
-    if (selection === undefined) return;
+  const selection = await selectListView(
+    storageItems
+  );
+
+  if (selection === undefined) return;
 
   switch (action) {
     case 'open':
@@ -341,7 +345,7 @@ function getBadgeText(value) {
 }
 
 function showWarning() {
-  const notification = atom.notifications.addWarning('This package only works *reliably* in Developer Mode. However, you can disable this limitation in the settings.', {
+  const notification = atom.notifications.addWarning('This package works best when in Developer Mode. However, you can disable this limitation in the settings.', {
     dismissable: true,
     buttons: [
       {
