@@ -42,7 +42,7 @@ The following commands are available through the [command-palette](https://fligh
 * Local Storage: Save Item
 * Local Storage: Remove Item
 
-Also take note that several tweaks can be made through the [package settings](https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings!
+Also take note that several tweaks can be made through the [package settings](https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings)!
 
 ## License
 
