@@ -329,7 +329,7 @@ function getBadgeText(value) {
 }
 
 function showWarning() {
-  const notification = atom.notifications.addWarning('This package only works *reliably* in Developer Mode. You can disable this limitation in the settings', {
+  const notification = atom.notifications.addWarning('This package only works *reliably* in Developer Mode. However, you can disable this limitation in the settings.', {
     dismissable: true,
     buttons: [
       {
