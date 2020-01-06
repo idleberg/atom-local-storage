@@ -1,3 +1,7 @@
+# v0.9.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.2)
+
+- fix: add support for null and empty filters
+
 # v0.9.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.1)
 
 - fix: rename command in menu
