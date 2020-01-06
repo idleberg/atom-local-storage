@@ -8,10 +8,10 @@ const path = require('path');
 const config = {
   target: 'node',
 
-  entry: './src/local-storage.coffee',
+  entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: 'local-storage.js',
+    filename: 'main.js',
     libraryTarget: 'commonjs2',
     devtoolModuleFilenameTemplate: '../[resource-path]'
   },
@@ -21,16 +21,16 @@ const config = {
     electron: 'electron'
   },
   resolve: {
-    extensions: ['.coffee', '.js']
+    extensions: ['.ts', '.js']
   },
   module: {
     rules: [
       {
-        test: /\.coffee$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'coffee-loader'
+            loader: 'ts-loader'
           }
         ]
       }

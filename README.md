@@ -40,7 +40,7 @@ The following commands are available through the [command-palette](https://atom.
 
 * Local Storage: Open Item
 * Local Storage: Save Item
-* Local Storage: Delete Item
+* Local Storage: Remove Item
 
 Also take note that several tweaks can be made through the package settings!
 

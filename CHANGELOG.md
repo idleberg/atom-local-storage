@@ -1,3 +1,10 @@
+# v0.9.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.8.0)
+
+- rewrite in TypeScript
+- add panel to save changes
+- remove custom filters
+- fix and rename delete/remove command
+
 # v0.8.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.8.0)
 
 - bundle with Webpack
