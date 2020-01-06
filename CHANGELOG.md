@@ -1,3 +1,7 @@
+# v0.10.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.10.1)
+
+- fix condition for close notification on JSON items
+
 # v0.10.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.10.0)
 
 - remove Developer Mode limitation
