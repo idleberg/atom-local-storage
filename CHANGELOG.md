@@ -1,3 +1,7 @@
+# v0.9.3 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.3)
+
+- change Developer Mode dialog
+
 # v0.9.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.2)
 
 - fix: add support for null and empty filters
