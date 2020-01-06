@@ -153,8 +153,19 @@ function showPanel(editor) {
 
   const closeButton: HTMLElement = atomPanel.querySelector('.btn-default') as HTMLElement;
   closeButton.addEventListener('click', () => {
-    if (editor.getText() === localStorage.getItem(editor.getTitle())) {
-      return closeEditor(editor);
+
+    const scope = editor.getGrammar().scopeName;
+    const text = editor.getText();
+    const item = localStorage.getItem(editor.getTitle());
+
+    if (scope === 'source.json') {
+      if (JSON.stringify(JSON.parse(text), null, 0) === item) {
+        return closeEditor(editor);
+      }
+    } else {
+      if (text === item) {
+        return closeEditor(editor);
+      }
     }
 
     const notification = atom.notifications.addInfo(
