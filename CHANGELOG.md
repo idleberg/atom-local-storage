@@ -1,3 +1,7 @@
+# v0.9.5 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.5)
+
+- show Developer Mode dialog when opening/removing items
+
 # v0.9.4 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.4)
 
 - fix when opening from non-TextEditor panel
