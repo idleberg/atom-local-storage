@@ -14,7 +14,7 @@ Edit items stored in Atom's [`localStorage`](https://developer.mozilla.org/en-US
 
 Install `local-storage` from Atom's [Package Manager](http://flight-manual.atom.io/using-atom/sections/atom-packages/) or the command-line equivalent:
 
-`$ apm install local-storage`
+`$ apm install local-storage`gi
 
 ### GitHub
 
@@ -36,13 +36,13 @@ $ git clone https://github.com/idleberg/atom-local-storage local-storage
 
 ## Usage
 
-The following commands are available through the [command-palette](https://atom.io/docs/latest/getting-started-atom-basics#command-palette):
+The following commands are available through the [command-palette](https://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette):
 
 * Local Storage: Open Item
 * Local Storage: Save Item
 * Local Storage: Remove Item
 
-Also take note that several tweaks can be made through the package settings!
+Also take note that several tweaks can be made through the [package settings](https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings!
 
 ## License
 
