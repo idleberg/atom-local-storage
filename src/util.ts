@@ -52,7 +52,7 @@ function openItem(item) {
     }
 
     editor.setText(itemString);
-    showPanel();
+    showPanel(editor);
   }).catch( error => {
     atom.notifications.addError(error.toString(), {
       dismissable: true
@@ -122,9 +122,7 @@ function removeItem(item) {
   });
 }
 
-function showPanel() {
-  const editor = atom.workspace.getActiveTextEditor();
-
+function showPanel(editor) {
   if (!editor) {
     return atom.beep();
   }
@@ -135,7 +133,7 @@ function showPanel() {
 
   const atomPanel: HTMLElement = document.createElement('atom-panel');
   atomPanel.classList.add('padded', 'bg-primary', 'local-storage-controls');
-  atomPanel.setAttribute('id', `local-storage-controls-${editor.id}`);
+  atomPanel.setAttribute('data-local-storage', editor.id.toString());
 
   atomPanel.insertAdjacentHTML('beforeend', `
     <div class='block'>
@@ -150,13 +148,10 @@ function showPanel() {
   `);
 
   const saveButton: HTMLElement = atomPanel.querySelector('.btn-primary') as HTMLElement;
-  const closeButton: HTMLElement = atomPanel.querySelector('.btn-default') as HTMLElement;
-
   saveButton.addEventListener('click', saveItem);
 
+  const closeButton: HTMLElement = atomPanel.querySelector('.btn-default') as HTMLElement;
   closeButton.addEventListener('click', () => {
-    const index = storageEditors.indexOf(editor.id);
-
     const notification = atom.notifications.addInfo(
       `This localStorage item has changes, do you really want to discard them?`, {
       dismissable: true,
@@ -165,9 +160,16 @@ function showPanel() {
           text: 'Discard Changes',
           className: 'icon icon-trashcan',
           onDidClick: () => {
+            const index = storageEditors.indexOf(editor.id);
+            storageEditors.splice(index, 1);
+
+            const controls: HTMLElement = document.querySelector(`[data-local-storage="${editor.id}"`) as HTMLElement;
+            if (controls && controls.parentNode) {
+              controls.parentNode.removeChild(controls);
+            }
+
             // @ts-ignore
             editor.destroy();
-            storageEditors.splice(index, 1);
             notification.dismiss();
           }
         },
@@ -186,7 +188,9 @@ function showPanel() {
 }
 
 function toggleEditorPanel(editor) {
-  const controls = document.querySelectorAll('.local-storage-controls');
+  if (!editor) return;
+
+  const controls = document.querySelectorAll('[data-local-storage]');
 
   if (controls.length) {
     controls.forEach(control => {
@@ -198,7 +202,7 @@ function toggleEditorPanel(editor) {
     });
   }
 
-  const elem = document.querySelector(`#local-storage-controls-${editor.id}`);
+  const elem = document.querySelector(`[data-local-storage="${editor.id}"]`);
 
   if (elem && elem.parentNode) {
     const parentNode: HTMLElement = elem.parentNode as HTMLElement;
