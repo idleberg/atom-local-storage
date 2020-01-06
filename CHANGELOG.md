@@ -4,6 +4,7 @@
 - add panel to save changes
 - remove custom filters
 - fix and rename delete/remove command
+- update dependencies
 
 # v0.8.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.8.0)
 
