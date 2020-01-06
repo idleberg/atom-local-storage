@@ -1,3 +1,7 @@
+# v0.10.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.10.0)
+
+- remove Developer Mode limitation
+
 # v0.9.6 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.6)
 
 - fix regression when opening from non-TextEditor panel
