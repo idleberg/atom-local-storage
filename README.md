@@ -16,7 +16,7 @@ Edit items stored in Atom's [`localStorage`](https://developer.mozilla.org/en-US
 
 Install `local-storage` from Atom's [Package Manager](http://flight-manual.atom.io/using-atom/sections/atom-packages/) or the command-line equivalent:
 
-`$ apm install local-storage`gi
+`$ apm install local-storage`
 
 ### GitHub
 
