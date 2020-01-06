@@ -1,4 +1,4 @@
-# localStorage
+# local-storage
 
 [![apm](https://flat.badgen.net/apm/license/local-storage)](https://atom.io/packages/local-storage)
 [![apm](https://flat.badgen.net/apm/v/local-storage)](https://atom.io/packages/local-storage)
@@ -6,7 +6,7 @@
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-local-storage)](https://circleci.com/gh/idleberg/atom-local-storage)
 [![David](https://flat.badgen.net/david/dep/idleberg/atom-local-storage)](https://david-dm.org/idleberg/atom-local-storage)
 
-Edit items stored in Atom's localStorage. This package only works reliably in Developer Mode!
+Edit items stored in Atom's [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API). This package only works *reliably* in Developer Mode!
 
 ![Screenshot](https://raw.github.com/idleberg/atom-local-storage/master/screenshot.png)
 
