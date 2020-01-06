@@ -1,7 +1,7 @@
 let storageEditors: number[] = [];
 
 async function createListView(action) {
-  if (getConfig('limitToDevMode') === true && atom.inDevMode() === false) {
+  if (action === 'open' && getConfig('limitToDevMode') === true && atom.inDevMode() === false) {
     return showWarning();
   }
 
@@ -187,8 +187,22 @@ function showPanel(editor) {
 }
 
 function toggleEditorPanel(editor) {
+  hidePanels();
+
   if (!editor) return;
 
+  const elem = document.querySelector(`[data-local-storage="${editor.id}"]`);
+
+  if (elem && elem.parentNode) {
+    const parentNode: HTMLElement = elem.parentNode as HTMLElement;
+
+    if (parentNode) {
+      parentNode.style.display = (editor && storageEditors.includes(editor.id)) ? 'block' : 'none';
+    }
+  }
+}
+
+function hidePanels() {
   const controls = document.querySelectorAll('[data-local-storage]');
 
   if (controls.length) {
@@ -199,16 +213,6 @@ function toggleEditorPanel(editor) {
         parentNode.style.display = 'none';
       }
     });
-  }
-
-  const elem = document.querySelector(`[data-local-storage="${editor.id}"]`);
-
-  if (elem && elem.parentNode) {
-    const parentNode: HTMLElement = elem.parentNode as HTMLElement;
-
-    if (parentNode) {
-      parentNode.style.display = (editor && storageEditors.includes(editor.id)) ? 'block' : 'none';
-    }
   }
 }
 
