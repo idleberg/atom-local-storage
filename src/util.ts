@@ -210,14 +210,17 @@ function toggleEditorPanel(editor) {
 }
 
 function filterKeys(key: string): boolean {
-  const { installedPackages, settingsView, treeView, releaseNotes, metricsID } = getConfig('filteredItems');
+  const { installedPackages, settingsView, treeView, releaseNotes, metricsID, emptyItems, nullItems } = getConfig('filteredItems');
+  const value: string | null = localStorage.getItem(key) || '';
 
   if (
     (installedPackages === false || !key.startsWith('installed-packages:')) &&
     (settingsView === false || !key.startsWith('settings-view:')) &&
     (treeView === false || !key.startsWith('tree-view:')) &&
     (releaseNotes === false || !key.startsWith('release-notes:')) &&
-    (metricsID === false || key !== 'metrics.userId')
+    (metricsID === false || key !== 'metrics.userId') &&
+    (emptyItems === false || !['[]', '{}', ''].includes(value)) &&
+    (nullItems === false || value !== 'null')
   ) {
     return true;
   } else {
