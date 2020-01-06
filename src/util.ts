@@ -332,7 +332,7 @@ function showWarning() {
       {
         text: 'Open in Developer Mode',
         className: 'icon icon-code',
-        onDidClick: function() {
+        onDidClick: () => {
           atom.commands.dispatch(atom.views.getView(atom.workspace), 'application:open-dev');
           notification.dismiss();
         }

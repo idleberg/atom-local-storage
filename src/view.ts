@@ -10,7 +10,7 @@ export async function selectListView(
   const currentFocus = document.activeElement as HTMLElement | void;
 
   try {
-    return await new Promise<string | undefined>((resolve) => {
+    return await new Promise<string | undefined>( resolve => {
       const select: SelectListView<string> = new SelectListView({
         items,
         elementForItem: (item: string) => {
