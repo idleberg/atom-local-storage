@@ -1,3 +1,8 @@
+# v0.9.6 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.6)
+
+- fix regression when opening from non-TextEditor panel
+- change logic for Developer Mode dialog
+
 # v0.9.5 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.9.5)
 
 - show Developer Mode dialog when opening/removing items
