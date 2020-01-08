@@ -1,3 +1,8 @@
+# v0.10.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.10.2)
+
+- remove panels on default tab-close
+- remove stray HTML class
+
 # v0.10.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.10.1)
 
 - fix condition for close notification on JSON items

@@ -133,7 +133,7 @@ function showPanel(editor) {
   }
 
   const atomPanel: HTMLElement = document.createElement('atom-panel');
-  atomPanel.classList.add('padded', 'bg-primary', 'local-storage-controls');
+  atomPanel.classList.add('padded', 'bg-primary');
   atomPanel.setAttribute('data-local-storage', editor.id.toString());
 
   atomPanel.insertAdjacentHTML('beforeend', `
@@ -190,6 +190,9 @@ function showPanel(editor) {
 
   atom.workspace.addBottomPanel({item: atomPanel});
   atom.workspace.onDidChangeActiveTextEditor(editor => toggleEditorPanel(editor));
+  editor.onDidDestroy(() => {
+    removePanel(editor.id);
+  });
 
   toggleEditorPanel(editor);
 }
@@ -207,6 +210,14 @@ function toggleEditorPanel(editor) {
     if (parentNode) {
       parentNode.style.display = (editor && storageEditors.includes(editor.id)) ? 'block' : 'none';
     }
+  }
+}
+
+function removePanel(id) {
+  const controls: HTMLElement = document.querySelector(`[data-local-storage="${id}"`) as HTMLElement;
+
+  if (controls && controls.parentNode) {
+    controls.parentNode.removeChild(controls);
   }
 }
 
@@ -248,10 +259,7 @@ function closeEditor(editor) {
   const index = storageEditors.indexOf(editor.id);
   storageEditors.splice(index, 1);
 
-  const controls: HTMLElement = document.querySelector(`[data-local-storage="${editor.id}"`) as HTMLElement;
-  if (controls && controls.parentNode) {
-    controls.parentNode.removeChild(controls);
-  }
+  removePanel(editor.id);
 
   // @ts-ignore
   editor.destroy();
