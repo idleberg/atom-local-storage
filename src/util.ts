@@ -133,7 +133,10 @@ function showPanel(editor) {
   }
 
   const atomPanel: HTMLElement = document.createElement('atom-panel');
-  atomPanel.classList.add('padded', 'bg-primary');
+  atomPanel.classList.add('padded');
+  if (getConfig('highlightEditPane')) {
+     atomPanel.classList.add('bg-primary');
+  }
   atomPanel.setAttribute('data-local-storage', editor.id.toString());
 
   atomPanel.insertAdjacentHTML('beforeend', `
