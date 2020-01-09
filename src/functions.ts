@@ -225,6 +225,7 @@ function removePanel(id) {
   const controls: HTMLElement = document.querySelector(`[data-local-storage="${id}"`) as HTMLElement;
 
   if (controls && controls.parentNode) {
+    if (getConfig('debugMode')) console.log(`Removing panel`);
     controls.parentNode.removeChild(controls);
   }
 }
