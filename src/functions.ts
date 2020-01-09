@@ -94,6 +94,8 @@ function saveItem() {
           text: 'Create Item',
           className: 'icon icon-file-add',
           onDidClick: () => {
+            if (debugMode) console.log(`Saving '${title}' from localStorage`);
+
             localStorage.setItem(title, content);
             notification.dismiss();
           }
@@ -116,6 +118,8 @@ function removeItem(item) {
         text: 'Remove Item',
         className: 'icon icon-trashcan',
         onDidClick: () => {
+          if (debugMode) console.log(`Removing '${title}' from localStorage`);
+
           localStorage.removeItem(item);
           notification.dismiss();
         }
