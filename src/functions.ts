@@ -188,6 +188,8 @@ function showPanel(editor) {
           text: 'Discard Changes',
           className: 'icon icon-trashcan',
           onDidClick: () => {
+            if (debugMode) console.log(`Closing editor #${editor.id}`);
+
             closeEditor(editor);
             notification.dismiss();
           }
