@@ -1,3 +1,9 @@
+# v0.11.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.11.0)
+
+- add option to toggle panel highlight
+- add option to hide tab icon
+- add more debug messages
+
 # v0.10.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.10.2)
 
 - remove panels on default tab-close
