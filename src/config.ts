@@ -22,7 +22,7 @@ const config = {
   },
   highlightEditPane: {
     title: 'Highlight Edit Pane',
-    description: 'Sets a background color to th editing pane',
+    description: 'Sets a background color to the editing pane',
     type: 'boolean',
     default: true,
     order: 4
