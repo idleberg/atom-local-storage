@@ -57,13 +57,17 @@ function openItem(item) {
     }
 
     editor.setText(itemString);
-    
-    const view = atom.views.getView(editor);
 
-    if (!view.getAttribute('data-local-storage-pane')) {
-      view.setAttribute('data-local-storage-pane', '');
+    const pane = atom.workspace.getActivePane();
+
+    if (pane) {
+      const view = atom.views.getView(pane);
+
+      if (getConfig('hideCloseIcon')) {
+        view.setAttribute('data-local-storage-pane', '');
+      }
     }
-    
+
     showPanel(editor);
   }).catch( error => {
     atom.notifications.addError(error.toString(), {
