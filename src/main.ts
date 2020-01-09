@@ -1,5 +1,5 @@
 import { CompositeDisposable } from 'atom';
-import { createListView, saveItem } from './util';
+import { createListView, saveItem } from './functions';
 export { config } from './config';
 
 let subscriptions: CompositeDisposable | undefined;
