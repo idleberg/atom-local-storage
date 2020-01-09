@@ -384,6 +384,7 @@ function addPaneAttribute() {
   panes.forEach(pane => {
     const view = atom.views.getView(pane);
 
+    if (getConfig('debugMode')) console.log(`Adding 'data-local-storage-pane' to pane #${pane.id}`);
     view.setAttribute('data-local-storage-pane', '');
   });
 }
@@ -394,6 +395,7 @@ function removePaneAttribute() {
   panes.forEach(pane => {
     const view = atom.views.getView(pane);
 
+    if (getConfig('debugMode')) console.log(`Removing 'data-local-storage-pane' from pane #${pane.id}`);
     view.removeAttribute('data-local-storage-pane');
   });
 }
