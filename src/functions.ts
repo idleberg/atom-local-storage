@@ -57,6 +57,13 @@ function openItem(item) {
     }
 
     editor.setText(itemString);
+    
+    const view = atom.views.getView(editor);
+
+    if (!view.getAttribute('data-local-storage-pane')) {
+      view.setAttribute('data-local-storage-pane', '');
+    }
+    
     showPanel(editor);
   }).catch( error => {
     atom.notifications.addError(error.toString(), {
