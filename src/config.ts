@@ -20,17 +20,24 @@ const config = {
     default: true,
     order: 3
   },
+  highlightEditPane: {
+    title: 'Highlight Edit Pane',
+    description: 'Sets a background color to th editing pane',
+    type: 'boolean',
+    default: true,
+    order: 4
+  },
   debugMode: {
     title: 'Debug Mode',
     description: 'Specifies whether to log all actions to console',
     type: 'boolean',
     default: false,
-    order: 4
+    order: 5
   },
   filteredItems: {
     title: 'Filtered Items',
     type: 'object',
-    order: 5,
+    order: 6,
     properties: {
       installedPackages: {
         title: 'Installed Packages',
