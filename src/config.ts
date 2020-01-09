@@ -69,7 +69,7 @@ const config = {
       },
       emptyItems: {
         title: 'Empty Items',
-        description: 'Filter all zero-length items',
+        description: 'Filter all zero-length strings, empty array and objects',
         type: 'boolean',
         default: true,
         order: 6
