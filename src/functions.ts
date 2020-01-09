@@ -60,12 +60,10 @@ function openItem(item) {
 
     const pane = atom.workspace.getActivePane();
 
-    if (pane) {
+    if (pane && getConfig('hideCloseIcon')) {
       const view = atom.views.getView(pane);
 
-      if (getConfig('hideCloseIcon')) {
-        view.setAttribute('data-local-storage-pane', '');
-      }
+      view.setAttribute('data-local-storage-pane', '');
     }
 
     showPanel(editor);
