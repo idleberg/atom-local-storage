@@ -22,22 +22,29 @@ const config = {
   },
   highlightEditPane: {
     title: 'Highlight Edit Pane',
-    description: 'Sets a background color to the editing pane',
+    description: 'Sets a background color to the editor pane',
     type: 'boolean',
     default: true,
     order: 4
+  },
+  hideCloseIcon: {
+    title: 'Hide Close Icon',
+    description: 'Hides close icon of the editor pane',
+    type: 'boolean',
+    default: true,
+    order: 5
   },
   debugMode: {
     title: 'Debug Mode',
     description: 'Specifies whether to log all actions to console',
     type: 'boolean',
     default: false,
-    order: 5
+    order: 6
   },
   filteredItems: {
     title: 'Filtered Items',
     type: 'object',
-    order: 6,
+    order: 7,
     properties: {
       installedPackages: {
         title: 'Installed Packages',
