@@ -34,6 +34,9 @@
       "local-storage:save-item"
     ]
   },
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
   "dependencies": {
     "atom-select-list": "^0.7.2"
   },

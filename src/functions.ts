@@ -58,12 +58,8 @@ function openItem(item) {
 
     editor.setText(itemString);
 
-    const pane = atom.workspace.getActivePane();
-
-    if (pane && getConfig('hideCloseIcon')) {
-      const view = atom.views.getView(pane);
-
-      view.setAttribute('data-local-storage-pane', '');
+    if (getConfig('hideCloseIcon')) {
+      addPaneAttribute();
     }
 
     showPanel(editor);
@@ -382,10 +378,32 @@ function isProject() {
   return projectPaths.length > 0 ? true : false;
 }
 
+function addPaneAttribute() {
+  const panes = atom.workspace.getPanes();
+
+  panes.forEach(pane => {
+    const view = atom.views.getView(pane);
+
+    view.setAttribute('data-local-storage-pane', '');
+  });
+}
+
+function removePaneAttribute() {
+  const panes = atom.workspace.getPanes();
+
+  panes.forEach(pane => {
+    const view = atom.views.getView(pane);
+
+    view.removeAttribute('data-local-storage-pane');
+  });
+}
+
 export {
+  addPaneAttribute,
   createHTML,
   createListView,
   filterKeys,
   getConfig,
+  removePaneAttribute,
   saveItem
 };
