@@ -1,5 +1,5 @@
 import { CompositeDisposable } from 'atom';
-import { addPaneAttribute, createListView, removePaneAttribute, saveItem } from './functions';
+import { addPaneAttributes, createListView, removePaneAttributes, saveItem } from './functions';
 export { config } from './config';
 
 let subscriptions: CompositeDisposable | undefined;
@@ -23,9 +23,9 @@ export async function activate() {
 
   atom.config.observe('local-storage.hideCloseIcon', hideCloseIcon => {
     if (hideCloseIcon) {
-      addPaneAttribute();
+      addPaneAttributes();
     } else {
-      removePaneAttribute();
+      removePaneAttributes();
     }
   });
 }

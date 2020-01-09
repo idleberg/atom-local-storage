@@ -59,7 +59,7 @@ function openItem(item) {
     editor.setText(itemString);
 
     if (getConfig('hideCloseIcon')) {
-      addPaneAttribute();
+      addPaneAttribute(editor);
     }
 
     showPanel(editor);
@@ -94,7 +94,7 @@ function saveItem() {
           text: 'Create Item',
           className: 'icon icon-file-add',
           onDidClick: () => {
-            if (debugMode) console.log(`Saving '${title}' from localStorage`);
+            if (getConfig('debugMode')) console.log(`Saving '${title}' from localStorage`);
 
             localStorage.setItem(title, content);
             notification.dismiss();
@@ -118,7 +118,7 @@ function removeItem(item) {
         text: 'Remove Item',
         className: 'icon icon-trashcan',
         onDidClick: () => {
-          if (debugMode) console.log(`Removing '${title}' from localStorage`);
+          if (getConfig('debugMode')) console.log(`Removing '${item}' from localStorage`);
 
           localStorage.removeItem(item);
           notification.dismiss();
@@ -188,7 +188,7 @@ function showPanel(editor) {
           text: 'Discard Changes',
           className: 'icon icon-trashcan',
           onDidClick: () => {
-            if (debugMode) console.log(`Closing editor #${editor.id}`);
+            if (getConfig('debugMode')) console.log(`Closing editor #${editor.id}`);
 
             closeEditor(editor);
             notification.dismiss();
@@ -385,34 +385,65 @@ function isProject() {
   return projectPaths.length > 0 ? true : false;
 }
 
-function addPaneAttribute() {
-  const panes = atom.workspace.getPanes();
+function getParent(elem, selector) {
+  for (; elem && elem !== document; elem = elem.parentNode) {
+    if (elem.matches(selector)) {
+      return elem;
+    }
+  }
 
-  panes.forEach(pane => {
-    const view = atom.views.getView(pane);
+  return null;
+}
 
-    if (getConfig('debugMode')) console.log(`Adding 'data-local-storage-pane' to pane #${pane.id}`);
-    view.setAttribute('data-local-storage-pane', '');
+function addPaneAttribute(editor) {
+  const view = atom.views.getView(editor);
+  const pane = getParent(view, 'atom-pane');
+
+  if (pane) {
+    const dataName = pane.querySelector(`[data-name="${editor.getTitle()}"]`).parentNode;
+
+    if (dataName) {
+      dataName.setAttribute('data-local-storage-pane', '');
+    }
+  }
+}
+
+function addPaneAttributes() {
+  const editors = atom.workspace.getTextEditors();
+
+  editors.forEach(editor => {
+    if (storageEditors.includes(editor.id)) {
+      addPaneAttribute(editor);
+    }
   });
 }
 
-function removePaneAttribute() {
-  const panes = atom.workspace.getPanes();
+function removePaneAttributes() {
+  const editors = atom.workspace.getTextEditors();
 
-  panes.forEach(pane => {
-    const view = atom.views.getView(pane);
+  editors.forEach(editor => {
+    if (storageEditors.includes(editor.id)) {
+      const view = atom.views.getView(editor);
+      const pane = getParent(view, 'atom-pane');
 
-    if (getConfig('debugMode')) console.log(`Removing 'data-local-storage-pane' from pane #${pane.id}`);
-    view.removeAttribute('data-local-storage-pane');
+      if (pane) {
+        const dataName = pane.querySelector(`[data-name="${editor.getTitle()}"]`).parentNode;
+
+        if (dataName) {
+          dataName.removeAttribute('data-local-storage-pane');
+        }
+      }
+
+    }
   });
 }
 
 export {
-  addPaneAttribute,
+  addPaneAttributes,
   createHTML,
   createListView,
   filterKeys,
   getConfig,
-  removePaneAttribute,
+  removePaneAttributes,
   saveItem
 };
