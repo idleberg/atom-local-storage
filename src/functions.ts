@@ -1,6 +1,6 @@
 import { tmpdir } from 'os';
 import { join } from 'path';
-import DeveloperConsole from '@atxmtx/developer-console';
+import * as devConsole from '@atxmtx/developer-console';
 
 let storageEditors: number[] = [];
 
@@ -34,7 +34,7 @@ function openItem(item) {
   const uri = isProject() ? item : join(tmpdir(), item);
 
   atom.workspace.open(uri).then( editor => {
-    DeveloperConsole.log(`Opening '${item}' from localStorage`);
+    devConsole.log(`Opening '${item}' from localStorage`);
 
     let itemString: string | null = localStorage.getItem(item);
 
@@ -46,7 +46,7 @@ function openItem(item) {
       try {
         itemObj = JSON.parse(itemString);
       } catch (error) {
-        DeveloperConsole.warn(`"${itemString}" is not an object`);
+        devConsole.warn(`"${itemString}" is not an object`);
       }
 
       if (typeof itemObj === 'object') {
@@ -93,7 +93,7 @@ function saveItem() {
           text: 'Create Item',
           className: 'icon icon-file-add',
           onDidClick: () => {
-            DeveloperConsole.log(`Saving '${title}' from localStorage`);
+            devConsole.log(`Saving '${title}' from localStorage`);
 
             localStorage.setItem(title, content);
             notification.dismiss();
@@ -117,7 +117,7 @@ function removeItem(item) {
         text: 'Remove Item',
         className: 'icon icon-trashcan',
         onDidClick: () => {
-          DeveloperConsole.log(`Removing '${item}' from localStorage`);
+          devConsole.log(`Removing '${item}' from localStorage`);
 
           localStorage.removeItem(item);
           notification.dismiss();
@@ -187,7 +187,7 @@ function showPanel(editor) {
           text: 'Discard Changes',
           className: 'icon icon-trashcan',
           onDidClick: () => {
-            DeveloperConsole.log(`Closing editor #${editor.id}`);
+            devConsole.log(`Closing editor #${editor.id}`);
 
             closeEditor(editor);
             notification.dismiss();
@@ -230,7 +230,7 @@ function removePanel(id) {
   const controls: HTMLElement = document.querySelector(`[data-local-storage="${id}"`) as HTMLElement;
 
   if (controls && controls.parentNode) {
-    DeveloperConsole.log(`Removing panel`);
+    devConsole.log(`Removing panel`);
     controls.parentNode.removeChild(controls);
   }
 }
@@ -264,7 +264,7 @@ function filterKeys(key: string): boolean {
   ) {
     return true;
   } else {
-    DeveloperConsole.log(`Skipping '${key}'`);
+    devConsole.log(`Skipping '${key}'`);
     return false;
   }
 }
@@ -410,7 +410,7 @@ function addPaneAttribute(editor) {
 function addPaneAttributes() {
   const editors = atom.workspace.getTextEditors();
 
-  editors.forEach(editor => {
+  editors.map(editor => {
     if (storageEditors.includes(editor.id)) {
       addPaneAttribute(editor);
     }
@@ -420,7 +420,7 @@ function addPaneAttributes() {
 function removePaneAttributes() {
   const editors = atom.workspace.getTextEditors();
 
-  editors.forEach(editor => {
+  editors.map(editor => {
     if (storageEditors.includes(editor.id)) {
       const view = atom.views.getView(editor);
       const pane = getParent(view, 'atom-pane');

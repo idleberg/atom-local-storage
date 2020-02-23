@@ -38,6 +38,7 @@
     "core:loaded-shell-environment"
   ],
   "dependencies": {
+    "@atxmtx/developer-console": "^0.1.1",
     "atom-select-list": "^0.7.2"
   },
   "devDependencies": {
