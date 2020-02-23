@@ -34,17 +34,10 @@ const config = {
     default: true,
     order: 5
   },
-  debugMode: {
-    title: 'Debug Mode',
-    description: 'Specifies whether to log all actions to console',
-    type: 'boolean',
-    default: false,
-    order: 6
-  },
   filteredItems: {
     title: 'Filtered Items',
     type: 'object',
-    order: 7,
+    order: 6,
     properties: {
       installedPackages: {
         title: 'Installed Packages',

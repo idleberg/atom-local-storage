@@ -1,5 +1,6 @@
 import { tmpdir } from 'os';
 import { join } from 'path';
+import DeveloperConsole from '@atxmtx/developer-console';
 
 let storageEditors: number[] = [];
 
@@ -33,9 +34,7 @@ function openItem(item) {
   const uri = isProject() ? item : join(tmpdir(), item);
 
   atom.workspace.open(uri).then( editor => {
-    const debugMode = getConfig('debugMode');
-
-    if (debugMode) console.log(`Opening '${item}' from localStorage`);
+    DeveloperConsole.log(`Opening '${item}' from localStorage`);
 
     let itemString: string | null = localStorage.getItem(item);
 
@@ -47,7 +46,7 @@ function openItem(item) {
       try {
         itemObj = JSON.parse(itemString);
       } catch (error) {
-        if (debugMode) console.warn(`"${itemString}" is not an object`);
+        DeveloperConsole.warn(`"${itemString}" is not an object`);
       }
 
       if (typeof itemObj === 'object') {
@@ -94,7 +93,7 @@ function saveItem() {
           text: 'Create Item',
           className: 'icon icon-file-add',
           onDidClick: () => {
-            if (getConfig('debugMode')) console.log(`Saving '${title}' from localStorage`);
+            DeveloperConsole.log(`Saving '${title}' from localStorage`);
 
             localStorage.setItem(title, content);
             notification.dismiss();
@@ -118,7 +117,7 @@ function removeItem(item) {
         text: 'Remove Item',
         className: 'icon icon-trashcan',
         onDidClick: () => {
-          if (getConfig('debugMode')) console.log(`Removing '${item}' from localStorage`);
+          DeveloperConsole.log(`Removing '${item}' from localStorage`);
 
           localStorage.removeItem(item);
           notification.dismiss();
@@ -188,7 +187,7 @@ function showPanel(editor) {
           text: 'Discard Changes',
           className: 'icon icon-trashcan',
           onDidClick: () => {
-            if (getConfig('debugMode')) console.log(`Closing editor #${editor.id}`);
+            DeveloperConsole.log(`Closing editor #${editor.id}`);
 
             closeEditor(editor);
             notification.dismiss();
@@ -231,7 +230,7 @@ function removePanel(id) {
   const controls: HTMLElement = document.querySelector(`[data-local-storage="${id}"`) as HTMLElement;
 
   if (controls && controls.parentNode) {
-    if (getConfig('debugMode')) console.log(`Removing panel`);
+    DeveloperConsole.log(`Removing panel`);
     controls.parentNode.removeChild(controls);
   }
 }
@@ -265,7 +264,7 @@ function filterKeys(key: string): boolean {
   ) {
     return true;
   } else {
-    if (getConfig('debugMode')) console.log(`Skipping '${key}'`);
+    DeveloperConsole.log(`Skipping '${key}'`);
     return false;
   }
 }
