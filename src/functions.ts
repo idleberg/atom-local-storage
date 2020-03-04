@@ -1,6 +1,6 @@
 import { tmpdir } from 'os';
 import { join } from 'path';
-import * as devConsole from '@atxmtx/developer-console';
+import * as devConsole from '@atxm/developer-console';
 
 let storageEditors: number[] = [];
 
