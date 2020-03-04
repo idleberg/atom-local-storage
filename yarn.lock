@@ -2,10 +2,12 @@
 # yarn lockfile v1
 
 
-"@atxmtx/developer-console@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@atxmtx/developer-console/-/developer-console-0.1.1.tgz#d333a58b7b904ff01717f69c21ef37e3d029dde8"
-  integrity sha512-utPoC15NS3ogUTbjPxO4ZNYo3Lz8fseedv5/8lF4KdqRHM8Op31NGVH90JLx4snUIhit42SmNVO3gY1Cle53SA==
+"@atxm/developer-console@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@atxm/developer-console/-/developer-console-0.2.0.tgz#6be560d3635ff7bf48b237e3996e538e08659b6c"
+  integrity sha512-Y+73Y0GOCaOWCNy6qqdhtlWRXaERcL6ANSh/VfansuAnI0kAFV3wP9DNobUvTpimOlKzEYMvv1FIKUzrNQKAnw==
+  dependencies:
+    atom-read-manifest "^0.4.1"
 
 "@babel/code-frame@^7.0.0":
   version "7.5.5"
@@ -353,6 +355,15 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+atom-read-manifest@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/atom-read-manifest/-/atom-read-manifest-0.4.1.tgz#95b8de87c78ddc59e4cfbbc906e8549e4f3c96f3"
+  integrity sha512-BItj/nAJnVm0lGXzkGS2bFY2VV7c8zbQEXT7Zy7VcchTwTHeM+wpFUmG2KgAV6C3pCV5ZdRwp8kxfzxEVHcI0Q==
+  dependencies:
+    caller-callsite "^4.1.0"
+    find-up "^4.1.0"
+    util "^0.12.1"
+
 atom-select-list@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/atom-select-list/-/atom-select-list-0.7.2.tgz#84a2db86af91d57b8acfc4ded34af771448fced7"
@@ -564,7 +575,14 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-callsites@^3.0.0:
+caller-callsite@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/caller-callsite/-/caller-callsite-4.1.0.tgz#3e33cb1d910e7b09332d59a3503b9af7462f7295"
+  integrity sha512-99nnnGlJexTc41xwQTr+mWl15OI5PPczUJzM4YRE7QjkefMKCXGa5gfQjCOuVrD+1TjI/fevIDHg2nz3iYN5Ig==
+  dependencies:
+    callsites "^3.1.0"
+
+callsites@^3.0.0, callsites@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
@@ -1166,7 +1184,7 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-find-up@^4.0.0:
+find-up@^4.0.0, find-up@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-4.1.0.tgz#97afe7d6cdc0bc5928584b7c8d7b16e8a9aa5d19"
   integrity sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==
@@ -1547,6 +1565,11 @@ is-accessor-descriptor@^1.0.0:
   dependencies:
     kind-of "^6.0.0"
 
+is-arguments@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/is-arguments/-/is-arguments-1.0.4.tgz#3faf966c7cba0ff437fb31f6250082fcf0448cf3"
+  integrity sha512-xPh0Rmt8NE65sNzvyUmWgI1tz3mKq74lGA0mL8LYZcoIzKOzDh6HmrYm3d18k60nHerC8A9Km8kYu87zfSFnLA==
+
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
@@ -1624,6 +1647,11 @@ is-fullwidth-code-point@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz#a3b30a5c4f199183167aaab93beefae3ddfb654f"
   integrity sha1-o7MKXE8ZkYMWeqq5O+764937ZU8=
+
+is-generator-function@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/is-generator-function/-/is-generator-function-1.0.7.tgz#d2132e529bb0000a7f80794d4bdf5cd5e5813522"
+  integrity sha512-YZc5EwyO4f2kWCax7oegfuSr9mFz1ZvieNYBEjmukLxgXfBUbxAWGVF7GZf0zidYtoBl3WvC07YK0wT76a+Rtw==
 
 is-glob@^3.1.0:
   version "3.1.0"
@@ -3197,6 +3225,16 @@ util@^0.11.0:
   integrity sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==
   dependencies:
     inherits "2.0.3"
+
+util@^0.12.1:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/util/-/util-0.12.2.tgz#54adb634c9e7c748707af2bf5a8c7ab640cbba2b"
+  integrity sha512-XE+MkWQvglYa+IOfBt5UFG93EmncEMP23UqpgDvVZVFBPxwmkK10QRp6pgU4xICPnWRf/t0zPv4noYSUq9gqUQ==
+  dependencies:
+    inherits "^2.0.3"
+    is-arguments "^1.0.4"
+    is-generator-function "^1.0.7"
+    safe-buffer "^5.1.2"
 
 v8-compile-cache@2.0.3:
   version "2.0.3"
