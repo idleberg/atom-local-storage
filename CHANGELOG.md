@@ -1,3 +1,18 @@
+# v0.12.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.12.2)
+
+- change selector for buttons
+- update dependencies
+
+# v0.12.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.12.1)
+
+- replace dependency
+
+# v0.12.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.12.0)
+
+- remove debug option
+- use `atxmtx/developer-console`
+- update dependencies
+
 # v0.11.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.11.1)
 
 - fix: only hide close icons for storage editors
