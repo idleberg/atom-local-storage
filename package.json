@@ -38,18 +38,18 @@
     "core:loaded-shell-environment"
   ],
   "dependencies": {
-    "@atxm/developer-console": "^0.2.0",
+    "@atxm/developer-console": "^0.2.1",
     "atom-select-list": "^0.7.2"
   },
   "devDependencies": {
-    "@types/atom": "^1.36.2",
-    "@types/node": "^13.7.4",
+    "@types/atom": "^1.40.1",
+    "@types/node": "^13.11.0",
     "husky": "^4.2.3",
     "rimraf": "^3.0.2",
-    "ts-loader": "^6.0.4",
-    "tslint": "^6.0.0",
-    "typescript": "^3.8.2",
-    "webpack": "^4.41.6",
+    "ts-loader": "^6.2.2",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
   "husky": {
