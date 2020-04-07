@@ -153,16 +153,16 @@ function showPanel(editor) {
       <i class="icon icon-alert"></i>
       <strong></strong> To save changes back to localStorage, make sure to use the controls on the right</span>
       <div class="inline-block-tight pull-right">
-        <button class="btn btn-primary icon icon-database">Save</button>
-        <button class="btn btn-default">Close</button>
+        <button id="local-storage--save" class="btn btn-primary icon icon-database">Save</button>
+        <button id="local-storage-close" class="btn btn-default">Close</button>
       </div>
     </div>
   `);
 
-  const saveButton: HTMLElement = atomPanel.querySelector('.btn-primary') as HTMLElement;
+  const saveButton: HTMLElement = atomPanel.querySelector('#local-storage--save') as HTMLElement;
   saveButton.addEventListener('click', saveItem);
 
-  const closeButton: HTMLElement = atomPanel.querySelector('.btn-default') as HTMLElement;
+  const closeButton: HTMLElement = atomPanel.querySelector('#local-storage-close') as HTMLElement;
   closeButton.addEventListener('click', () => {
 
     const scope = editor.getGrammar().scopeName;
