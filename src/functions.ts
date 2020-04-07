@@ -83,6 +83,8 @@ function saveItem() {
   }
 
   if (localStorage.getItem(title)) {
+    devConsole.log(`Saving '${title}' in localStorage`);
+
     return localStorage.setItem(title, content);
   } else {
     const notification = atom.notifications.addInfo(
@@ -93,7 +95,7 @@ function saveItem() {
           text: 'Create Item',
           className: 'icon icon-file-add',
           onDidClick: () => {
-            devConsole.log(`Saving '${title}' from localStorage`);
+            devConsole.log(`Creating '${title}' in localStorage`);
 
             localStorage.setItem(title, content);
             notification.dismiss();
@@ -154,7 +156,7 @@ function showPanel(editor) {
       <strong></strong> To save changes back to localStorage, make sure to use the controls on the right</span>
       <div class="inline-block-tight pull-right">
         <button id="local-storage--save" class="btn btn-primary icon icon-database">Save</button>
-        <button id="local-storage-close" class="btn btn-default">Close</button>
+        <button id="local-storage--close" class="btn btn-default">Close</button>
       </div>
     </div>
   `);
@@ -162,7 +164,7 @@ function showPanel(editor) {
   const saveButton: HTMLElement = atomPanel.querySelector('#local-storage--save') as HTMLElement;
   saveButton.addEventListener('click', saveItem);
 
-  const closeButton: HTMLElement = atomPanel.querySelector('#local-storage-close') as HTMLElement;
+  const closeButton: HTMLElement = atomPanel.querySelector('#local-storage--close') as HTMLElement;
   closeButton.addEventListener('click', () => {
 
     const scope = editor.getGrammar().scopeName;
