@@ -42,11 +42,11 @@
     "atom-select-list": "^0.7.2"
   },
   "devDependencies": {
-    "@types/atom": "^1.40.1",
-    "@types/node": "^13.11.0",
+    "@types/atom": "^1.40.2",
+    "@types/node": "^13.11.1",
     "husky": "^4.2.3",
     "rimraf": "^3.0.2",
-    "ts-loader": "^6.2.2",
+    "ts-loader": "^7.0.0",
     "tslint": "^6.1.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
