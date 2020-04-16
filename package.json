@@ -38,13 +38,13 @@
     "core:loaded-shell-environment"
   ],
   "dependencies": {
-    "@atxm/developer-console": "^0.2.1",
+    "@atxm/developer-console": "^0.2.2",
     "atom-select-list": "^0.7.2"
   },
   "devDependencies": {
     "@types/atom": "^1.40.2",
     "@types/node": "^13.11.1",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "rimraf": "^3.0.2",
     "ts-loader": "^7.0.0",
     "tslint": "^6.1.1",
