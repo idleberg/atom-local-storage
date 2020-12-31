@@ -152,8 +152,9 @@ function showPanel(editor) {
   atomPanel.insertAdjacentHTML('beforeend', `
     <div class='block'>
       <span class="inline-block-tight">
-      <i class="icon icon-alert"></i>
-      <strong></strong> To save changes back to localStorage, make sure to use the controls on the right</span>
+        <i class="icon icon-alert"></i>
+        To save changes back to localStorage, make sure to use the controls on the right
+      </span>
       <div class="inline-block-tight pull-right">
         <button id="local-storage--save" class="btn btn-primary icon icon-database">Save</button>
         <button id="local-storage--close" class="btn btn-default">Close</button>
