@@ -1,3 +1,10 @@
+# v0.13.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.13.0)
+
+- bundle with `esbuild`
+- lint with `eslint`
+- add `.gitattributes`
+- update dependencies
+
 # v0.12.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.12.2)
 
 - change selector for buttons
