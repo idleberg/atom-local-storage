@@ -17,7 +17,7 @@
 # v0.12.0 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.12.0)
 
 - remove debug option
-- use `atxmtx/developer-console`
+- use `atxm/developer-console`
 - update dependencies
 
 # v0.11.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.11.1)
