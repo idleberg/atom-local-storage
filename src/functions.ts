@@ -1,10 +1,11 @@
 import { tmpdir } from 'os';
 import { join } from 'path';
-import * as devConsole from '@atxm/developer-console';
+import config from './config';
+import devConsole from './log';
 
-let storageEditors: number[] = [];
+const storageEditors: number[] = [];
 
-async function createListView(action) {
+async function createListView(action: string): Promise<void> {
   const { selectListView } = await import('./view');
   const storageItems = Object.keys(localStorage).filter( key => filterKeys(key));
 
@@ -40,7 +41,7 @@ function openItem(item) {
 
     if (!itemString) return;
 
-    if (getConfig('detectJson')) {
+    if (config.get('detectJson')) {
       let itemObj;
 
       try {
@@ -57,7 +58,7 @@ function openItem(item) {
 
     editor.setText(itemString);
 
-    if (getConfig('hideCloseIcon')) {
+    if (config.get('hideCloseIcon')) {
       addPaneAttribute(editor);
     }
 
@@ -69,7 +70,7 @@ function openItem(item) {
   });
 }
 
-function saveItem() {
+function saveItem(): void {
   const editor = atom.workspace.getActiveTextEditor();
 
   if (editor == null) return atom.beep();
@@ -144,7 +145,7 @@ function showPanel(editor) {
 
   const atomPanel: HTMLElement = document.createElement('atom-panel');
   atomPanel.classList.add('padded');
-  if (getConfig('highlightEditPane')) {
+  if (config.get('highlightEditPane')) {
      atomPanel.classList.add('bg-primary');
   }
   atomPanel.setAttribute('data-local-storage', editor.id.toString());
@@ -253,7 +254,7 @@ function hidePanels() {
 }
 
 function filterKeys(key: string): boolean {
-  const { installedPackages, settingsView, treeView, releaseNotes, metricsID, emptyItems, nullItems } = getConfig('filteredItems');
+  const { installedPackages, settingsView, treeView, releaseNotes, metricsID, emptyItems, nullItems } = config.get('filteredItems');
   const value: string | null = localStorage.getItem(key) || '';
 
   if (
@@ -282,22 +283,18 @@ function closeEditor(editor) {
   editor.destroy();
 }
 
-function getConfig(key: string = '') {
-  return atom.config.get(`local-storage.${key}`);
-}
-
 function createHTML(key: string): string {
   const value: string | null = localStorage.getItem(key);
   const icon: string = getIcon(key);
 
-  if (getConfig('displayBadge')) {
+  if (config.get('displayBadge')) {
     const badgeStyle: string = getBadgeStyle(value);
     const badgeText: string = getBadgeText(value);
 
     return `
       ${icon}
-      <div class=\"pull-right\">
-        <code class=\"badge badge-${badgeStyle}\">${badgeText}</code>
+      <div class="pull-right">
+        <code class="badge badge-${badgeStyle}">${badgeText}</code>
       </div>
     `;
   }
@@ -306,7 +303,7 @@ function createHTML(key: string): string {
 }
 
 function getIcon(key) {
-  if (!getConfig('displayIcon')) {
+  if (!config.get('displayIcon')) {
     return key;
   }
 
@@ -350,15 +347,14 @@ function getBadgeStyle(value) {
     case 'null':
       return 'warning';
 
-    case 'null':
-      return 'warning';
-
     default:
       return 'info';
   }
 }
 
 function getBadgeText(value) {
+  const chars = value.length > 1 ? 'chars' : 'char';
+
   switch (value) {
     case 'true':
       return 'true';
@@ -376,7 +372,6 @@ function getBadgeText(value) {
       return '{}';
 
     default:
-      const chars = value.length > 1 ? 'chars' : 'char';
       return `${value.length} ${chars}`;
   }
 }
@@ -410,7 +405,7 @@ function addPaneAttribute(editor) {
   }
 }
 
-function addPaneAttributes() {
+function addPaneAttributes(): void {
   const editors = atom.workspace.getTextEditors();
 
   editors.map(editor => {
@@ -420,7 +415,7 @@ function addPaneAttributes() {
   });
 }
 
-function removePaneAttributes() {
+function removePaneAttributes(): void {
   const editors = atom.workspace.getTextEditors();
 
   editors.map(editor => {
@@ -445,7 +440,6 @@ export {
   createHTML,
   createListView,
   filterKeys,
-  getConfig,
   removePaneAttributes,
   saveItem
 };

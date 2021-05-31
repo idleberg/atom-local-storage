@@ -1,35 +1,42 @@
 import { CompositeDisposable } from 'atom';
 import { addPaneAttributes, createListView, removePaneAttributes, saveItem } from './functions';
-export { config } from './config';
+import config from "./config";
+import Logger from "./log";
 
-let subscriptions: CompositeDisposable | undefined;
+const LocalStorage = {
+  config: config.schema,
+  subscriptions: new CompositeDisposable(),
 
-export async function activate() {
-  // Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
-  subscriptions = new CompositeDisposable();
+  async activate(): Promise<void> {
+    Logger.log('Activating package');
 
-  // Register commands
-  subscriptions.add(atom.commands.add('atom-workspace', {
-    'local-storage:open-item': () => createListView('open')
-  }));
+    // Register commands
+    this.subscriptions.add(atom.commands.add('atom-workspace', {
+      'local-storage:open-item': () => createListView('open')
+    }));
 
-  subscriptions.add(atom.commands.add('atom-workspace', {
-    'local-storage:remove-item': () => createListView('remove')
-  }));
+    this.subscriptions.add(atom.commands.add('atom-workspace', {
+      'local-storage:remove-item': () => createListView('remove')
+    }));
 
-  subscriptions.add(atom.commands.add('atom-workspace', {
-    'local-storage:save-item': () => saveItem()
-  }));
+    this.subscriptions.add(atom.commands.add('atom-workspace', {
+      'local-storage:save-item': () => saveItem()
+    }));
 
-  atom.config.observe('local-storage.hideCloseIcon', hideCloseIcon => {
-    if (hideCloseIcon) {
-      addPaneAttributes();
-    } else {
-      removePaneAttributes();
-    }
-  });
-}
+    atom.config.observe('local-storage.hideCloseIcon', hideCloseIcon => {
+      if (hideCloseIcon) {
+        addPaneAttributes();
+      } else {
+        removePaneAttributes();
+      }
+    });
+  },
 
-export function deactivate() {
-  subscriptions && subscriptions.dispose();
-}
+  deactivate(): void {
+    Logger.log('Deactivating package');
+
+    this.subscriptions?.dispose();
+  }
+};
+
+export default LocalStorage;
