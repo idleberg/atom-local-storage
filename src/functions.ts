@@ -243,7 +243,7 @@ function hidePanels() {
   const controls = document.querySelectorAll('[data-local-storage]');
 
   if (controls.length) {
-    controls.forEach(control => {
+    Array.from(controls).map(control => {
       const parentNode: HTMLElement = control.parentNode as HTMLElement;
 
       if (parentNode) {
