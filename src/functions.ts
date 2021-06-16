@@ -1,5 +1,6 @@
 import { tmpdir } from 'os';
 import { join } from 'path';
+import { name } from '../package.json';
 import config from './config';
 import devConsole from './log';
 
@@ -7,7 +8,11 @@ const storageEditors: number[] = [];
 
 async function createListView(action: string): Promise<void> {
   const { selectListView } = await import('./view');
+  const filteredItems = Object.values(config.get('filteredItems'));
+
+  if (atom.inDevMode() && filteredItems.includes(true)) console.group(name);
   const storageItems = Object.keys(localStorage).filter( key => filterKeys(key));
+  if (atom.inDevMode() && filteredItems.includes(true)) console.groupEnd();
 
   if (storageItems === undefined) return;
 
