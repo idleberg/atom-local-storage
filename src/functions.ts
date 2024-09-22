@@ -151,7 +151,7 @@ function showPanel(editor) {
   const atomPanel: HTMLElement = document.createElement('atom-panel');
   atomPanel.classList.add('padded');
   if (config.get('highlightEditPane')) {
-     atomPanel.classList.add('bg-primary');
+     atomPanel.classList.add('bg-warning');
   }
   atomPanel.setAttribute('data-local-storage', editor.id.toString());
 
