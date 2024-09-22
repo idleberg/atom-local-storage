@@ -1,3 +1,8 @@
+# v0.13.2 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.13.2)
+
+- modify highlight color
+- update dependencies
+
 # v0.13.1 [#](https://github.com/idleberg/atom-local-storage/releases/tag/v0.13.1)
 
 - wrap skip messages in console group
