@@ -1,7 +1,7 @@
 # local-storage
 
-[![License](https://img.shields.io/github/license/idleberg/atom-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/atom-local-storage/blob/main/LICENSE)
-![Release](https://img.shields.io/github/v/release/idleberg/atom-local-storage?style=for-the-badge)
+[![License](https://img.shields.io/github/license/idleberg/atom-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/atom-local-storage/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/v/release/idleberg/atom-local-storage?style=for-the-badge)](https://github.com/idleberg/atom-local-storage/releases)
 ![Downloads](https://img.shields.io/pulsar/dt/local-storage?style=for-the-badge&color=slateblue)
 [![CI](https://img.shields.io/github/actions/workflow/status/idleberg/atom-local-storage/default.yml?style=for-the-badge)](https://github.com/idleberg/atom-local-storage/actions)
 
