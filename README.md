@@ -1,10 +1,9 @@
 # local-storage
 
-[![apm](https://flat.badgen.net/apm/license/local-storage)](https://atom.io/packages/local-storage)
-[![apm](https://flat.badgen.net/apm/v/local-storage)](https://atom.io/packages/local-storage)
-[![apm](https://flat.badgen.net/apm/dl/local-storage)](https://atom.io/packages/local-storage)
-[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-local-storage)](https://circleci.com/gh/idleberg/atom-local-storage)
-[![David](https://flat.badgen.net/david/dev/idleberg/atom-local-storage)](https://david-dm.org/idleberg/atom-local-storage?type=dev)
+[![License](https://img.shields.io/github/license/idleberg/atom-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/atom-local-storage/blob/main/LICENSE)
+![Release](https://img.shields.io/github/v/release/idleberg/atom-local-storage?style=for-the-badge)
+![Downloads](https://img.shields.io/pulsar/dt/local-storage?style=for-the-badge&color=slateblue)
+[![CI](https://img.shields.io/github/actions/workflow/status/idleberg/atom-local-storage/default.yml?style=for-the-badge)](https://github.com/idleberg/atom-local-storage/actions)
 
 Edit items stored in Atom's [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
 
