@@ -2,7 +2,7 @@
   "name": "local-storage",
   "main": "./lib/main",
   "version": "0.13.2",
-  "description": "Edit items stored in Atom's localStorage",
+  "description": "Edit items stored in the code editor's own localStorage",
   "scripts": {
     "build": "tsup",
     "clean": "rimraf ./lib",
