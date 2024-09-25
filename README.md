@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/idleberg/atom-local-storage?color=blue&style=for-the-badge)](https://github.com/idleberg/atom-local-storage/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/v/release/idleberg/atom-local-storage?style=for-the-badge)](https://github.com/idleberg/atom-local-storage/releases)
-![Downloads](https://img.shields.io/pulsar/dt/local-storage?style=for-the-badge&color=slateblue)
+[![Downloads](https://img.shields.io/pulsar/dt/local-storage?style=for-the-badge&color=slateblue)](https://web.pulsar-edit.dev/packages/local-storage)
 [![CI](https://img.shields.io/github/actions/workflow/status/idleberg/atom-local-storage/default.yml?style=for-the-badge)](https://github.com/idleberg/atom-local-storage/actions)
 
 Edit items stored in Atom's [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
