@@ -5,7 +5,7 @@
 [![Downloads](https://img.shields.io/pulsar/dt/local-storage?style=for-the-badge&color=slateblue)](https://web.pulsar-edit.dev/packages/local-storage)
 [![CI](https://img.shields.io/github/actions/workflow/status/idleberg/atom-local-storage/default.yml?style=for-the-badge)](https://github.com/idleberg/atom-local-storage/actions)
 
-Edit items stored in Atom's [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
+Edit items stored in the editor's own [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
 
 ![Screenshot](https://raw.github.com/idleberg/atom-local-storage/master/screenshot.png)
 
