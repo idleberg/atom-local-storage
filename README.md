@@ -36,12 +36,6 @@ Clone repository as `local-storage`:
 $ git clone https://github.com/idleberg/atom-local-storage local-storage
 ```
 
-Inside the cloned directory, install Node dependencies:
-
-```bash
-$ apm install
-```
-
 </details>
 
 <details>
@@ -61,12 +55,6 @@ Clone repository as `local-storage`:
 
 ```bash
 $ git clone https://github.com/idleberg/atom-local-storage local-storage
-```
-
-Inside the cloned directory, install Node dependencies:
-
-```bash
-$ ppm install
 ```
 
 </details>
