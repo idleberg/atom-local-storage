@@ -15,7 +15,7 @@ Install `local-storage` from Atom's [Package Manager](http://flight-manual.atom.
 
 `$ apm install local-storage`
 
-### Git
+### Using Git
 
 <details>
 <summary><strong>Atom</strong></summary>
