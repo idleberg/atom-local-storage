@@ -45,4 +45,4 @@ Also take note that several tweaks can be made through the [package settings](ht
 
 ## License
 
-This work licensed under [The MIT License](https://opensource.org/licenses/MIT)
+This work licensed under [The MIT License](https://opensource.org/licenses/MIT).
