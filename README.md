@@ -15,7 +15,10 @@ Install `local-storage` from Atom's [Package Manager](http://flight-manual.atom.
 
 `$ apm install local-storage`
 
-### GitHub
+### Git
+
+<details>
+<summary><strong>Atom</strong></summary>
 
 Change to your Atom packages directory:
 
@@ -27,11 +30,46 @@ $ cd %USERPROFILE%\.atom\packages
 $ cd ~/.atom/packages/
 ```
 
-Clone the repository as `local-storage`:
+Clone repository as `local-storage`:
 
 ```bash
 $ git clone https://github.com/idleberg/atom-local-storage local-storage
 ```
+
+Inside the cloned directory, install Node dependencies:
+
+```bash
+$ apm install
+```
+
+</details>
+
+<details>
+<summary><strong>Pulsar</strong></summary>
+
+Change to your Pulsar packages directory:
+
+```powershell
+# Windows
+$ cd %USERPROFILE%\.pulsar\packages
+
+# Linux & macOS
+$ cd ~/.pulsar/packages/
+```
+
+Clone repository as `local-storage`:
+
+```bash
+$ git clone https://github.com/idleberg/atom-local-storage local-storage
+```
+
+Inside the cloned directory, install Node dependencies:
+
+```bash
+$ ppm install
+```
+
+</details>
 
 ## Usage
 
