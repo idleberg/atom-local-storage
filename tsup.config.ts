@@ -3,6 +3,7 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
 	bundle: true,
 	clean: true,
+	entry: ['src/main.ts'],
 	external: ['atom', 'electron'],
 	format: 'cjs',
 	minify: true,
@@ -10,5 +11,4 @@ export default defineConfig({
 	platform: 'node',
 	target: 'node14',
 	treeshake: true,
-  entry: ['src/main.ts'],
 });
