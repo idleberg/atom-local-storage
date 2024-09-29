@@ -170,8 +170,8 @@ function showPanel(editor) {
 				To save changes back to localStorage, make sure to use the controls on the right
 			</span>
 			<div class="inline-block-tight pull-right">
-				<button id="local-storage--save" class="btn btn-primary icon icon-database">Save</button>
-				<button id="local-storage--close" class="btn btn-default">Close</button>
+				<button id="local-storage--save" class="btn btn-primary icon icon-database" type="button">Save</button>
+				<button id="local-storage--close" class="btn btn-default" type="button">Close</button>
 			</div>
 		</div>
 	`,
